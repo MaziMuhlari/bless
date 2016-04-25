@@ -1,0 +1,11 @@
+{
+    "name": "bless",
+    "main": "index.js",
+    "repository": "https://github.com/MaziMuhlari/bless.git",
+    "dependencies": {
+      "express" : "4.13.4",
+      "mongoose" : "4.4.13",
+      "body-parser" : "1.15.0",
+      "method-override" : "2.3.5"
+    }
+}
