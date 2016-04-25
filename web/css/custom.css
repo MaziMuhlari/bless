@@ -96,10 +96,52 @@ b.notifications{
   color: #fff; }
 .blesser-tile {
   border: 1px solid #F5F5F5;
-  padding: 10px; }
-
+  padding: 10px;
+  margin-top: 15px; }
 .blesser-tile a img{
-  width: 25px;
+  width: 25px; }
+.blesser-tile-list {
+  max-height: 600px;
+  overflow-y: scroll;
+  border-right: 1px solid #ccc;
+   }
+.blesser-tile-list ul li {
+  list-style: none;
+  background: #F5F5F5;
+  margin-bottom: 0px;
+  border-bottom: 1px solid #FAFAFA;
+  padding: 8px; }
+.blesser-tile-list ul li a {
+  text-decoration: none;
+  display: block; }
+.blesser-tile-list ul li a b.notifications {
+  padding: 3px;
+  font-size: 10px;}
+.blesser-tile-message {
+  max-height: 500px;
+  overflow-y: scroll; }
+.blesser-tile-message .you {
+  margin-bottom: 15px;
+  text-align: left;
+  padding: 10px;
+  background: #EEEEEE;
+  border-radius: 5px;
+  box-shadow: 0 1px .5px rgba(0,0,0,.13); }
+.blesser-tile-message .you small {
+  display: block;
+  color: #9E9E9E; }
+.blesser-tile-message .me {
+  margin-bottom: 15px;
+  text-align: right;
+  padding: 10px;
+  background: #dcf8c6;
+  border-radius: 5px;
+  box-shadow: 0 1px .5px rgba(0,0,0,.13); }
+.blesser-tile-message .me small {
+  display: block;
+  color: #9E9E9E; }
+.blesser-tile-message h5 {
+  text-align: center; }
 
 /* Larger than phone */
 @media (min-width: 550px) {
