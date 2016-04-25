@@ -16,6 +16,7 @@
   <script src="https://google-code-prettify.googlecode.com/svn/loader/run_prettify.js"></script>
   <link rel="stylesheet" href="css/github-prettify-theme.css">
   <script src="/js/site.js"></script>
+  <script src="/js/emojify.js"></script>
 
   <link rel="icon" type="image/png" href="/img/favicon.png">
 
@@ -94,7 +95,7 @@
         <div class="eight columns">
           <h5>Jane Doe</h5>
           <div class="blesser-tile-message">
-            <div class="me">Hey love :)<small>21:52</small></div>
+            <div class="me">Hey love :(<small>21:52</small></div>
             <div class="you">What's up baby girl?<small>21:52</small></div>
             <div class="you">You good?<small>21:52</small></div>
             <div class="me">Hey love :)<small>21:52</small></div>
@@ -125,6 +126,23 @@
     </ul>
 
   </div>
+
+  <script type="text/javascript">
+    emojify.setConfig({
+
+      emojify_tag_type : 'div',           // Only run emojify.js on this element
+      only_crawl_id    : null,            // Use to restrict where emojify.js applies
+      img_dir          : '/img/emoji',  // Directory for emoji images
+      ignored_tags     : {                // Ignore the following tags
+          'SCRIPT'  : 1,
+          'TEXTAREA': 1,
+          'A'       : 1,
+          'PRE'     : 1,
+          'CODE'    : 1
+      }
+    });
+    emojify.run();
+  </script>
 
 </body>
 </html>

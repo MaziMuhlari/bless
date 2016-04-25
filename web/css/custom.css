@@ -103,13 +103,12 @@ b.notifications{
 .blesser-tile-list {
   max-height: 600px;
   overflow-y: scroll;
-  border-right: 1px solid #ccc;
+  border-right: 1px solid #EEEEEE;
    }
 .blesser-tile-list ul li {
   list-style: none;
-  background: #F5F5F5;
   margin-bottom: 0px;
-  border-bottom: 1px solid #FAFAFA;
+  border-bottom: 1px solid #EEEEEE;
   padding: 8px; }
 .blesser-tile-list ul li a {
   text-decoration: none;
@@ -119,7 +118,8 @@ b.notifications{
   font-size: 10px;}
 .blesser-tile-message {
   max-height: 500px;
-  overflow-y: scroll; }
+  overflow-y: scroll;
+  margin-bottom: 20px; }
 .blesser-tile-message .you {
   margin-bottom: 15px;
   text-align: left;
@@ -142,6 +142,12 @@ b.notifications{
   color: #9E9E9E; }
 .blesser-tile-message h5 {
   text-align: center; }
+.emoji {
+    width: 1.5em;
+    height: 1.5em;
+    display: inline-block;
+    /*margin-bottom: -0.25em; Fixes presets which makes icon too out of line */
+}
 
 /* Larger than phone */
 @media (min-width: 550px) {
