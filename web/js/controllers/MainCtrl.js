@@ -1,4 +1,12 @@
 angular.module('MainCtrl', []).controller('MainController', function($scope, $http, $window) {
+  $scope.joinDialogue = false;
+  $scope.isLoggedIn = false;
+  $scope.openJoinDialogue = function(){
+    $scope.joinDialogue = true;
+  }
+  $scope.closeJoinDialogue = function(){
+    $scope.joinDialogue = false;
+  }
   emojify.setConfig({
 
     emojify_tag_type : 'div',           // Only run emojify.js on this element
