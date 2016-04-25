@@ -1,7 +1,8 @@
 <!DOCTYPE html>
-<html lang="en">
+<html lang="en" ng-app="BlesserApp">
 <head>
   <meta charset="utf-8">
+  <base href="/">
   <title>bless.er | home</title>
   <meta name="description" content="Find your blesser. Get blessed. Amen.">
   <meta name="author" content="bless.er">
@@ -10,6 +11,7 @@
 
   <link rel="stylesheet" href="/libs/skeleton-css/css/normalize.css">
   <link rel="stylesheet" href="/libs/skeleton-css/css/skeleton.css">
+  <link rel="stylesheet" href="/libs/animate.css/animate.css">
   <link rel="stylesheet" href="/css/custom.css">
 
   <script src="//ajax.googleapis.com/ajax/libs/jquery/2.1.1/jquery.min.js"></script>
@@ -20,8 +22,28 @@
 
   <link rel="icon" type="image/png" href="/img/favicon.png">
 
+  <script src="/libs/angular/angular.min.js"></script>
+  <script src="/libs/angular-route/angular-route.min.js"></script>
+
+  <script src="/js/controllers/AboutCtrl.js"></script>
+  <script src="/js/controllers/AdvertisingCtrl.js"></script>
+  <script src="/js/controllers/ContactCtrl.js"></script>
+  <script src="/js/controllers/CookiesCtrl.js"></script>
+  <script src="/js/controllers/MainCtrl.js"></script>
+  <script src="/js/controllers/MessagesCtrl.js"></script>
+  <script src="/js/controllers/PrivacyCtrl.js"></script>
+  <script src="/js/controllers/TermsCtrl.js"></script>
+
+  <script src="/js/services/BlesserService.js"></script>
+  <script src="/js/services/ConversationService.js"></script>
+  <script src="/js/services/MessageService.js"></script>
+  <script src="/js/services/UserService.js"></script>
+
+  <script src="/js/routes.js"></script>
+  <script src="/js/app.js"></script>
+
 </head>
-<body class="code-snippets-visible">
+<body class="code-snippets-visible" ng-controller="MainController">
 
   <div class="container">
     <section class="header">
@@ -60,47 +82,7 @@
       </div>
     </nav>
 
-    <div class="docs-section" id="intro">
-
-      <div class="row">
-        <div class="six columns">
-          <div class="blesser-tile">
-            <a href="/messages" class="u-pull-right"><img src="/img/envelope.png" /></a>
-            <strong>Name: </strong> John Doe <br />
-            <strong>Description: </strong> I am looking for a young girl that will not get attached. She must be willing to see me sporadically. <br />
-            <strong>Blessing: </strong> R5 000 p/m <br />
-          </div>
-        </div>
-        <div class="six columns">
-          <div class="blesser-tile">
-            <a href="/messages" class="u-pull-right"><img src="/img/envelope.png" /></a>
-            <strong>Name: </strong> John Doe <br />
-            <strong>Description: </strong> I am looking for a young girl that will not get attached. She must be willing to see me sporadically. <br />
-            <strong>Blessing: </strong> R5 000 p/m <br />
-          </div>
-        </div>
-      </div>
-
-      <div class="row">
-        <div class="six columns">
-          <div class="blesser-tile">
-            <a href="/messages" class="u-pull-right"><img src="/img/envelope.png" /></a>
-            <strong>Name: </strong> John Doe <br />
-            <strong>Description: </strong> I am looking for a young girl that will not get attached. She must be willing to see me sporadically. <br />
-            <strong>Blessing: </strong> R5 000 p/m <br />
-          </div>
-        </div>
-        <div class="six columns">
-          <div class="blesser-tile">
-            <a href="/messages" class="u-pull-right"><img src="/img/envelope.png" /></a>
-            <strong>Name: </strong> John Doe <br />
-            <strong>Description: </strong> I am looking for a young girl that will not get attached. She must be willing to see me sporadically. <br />
-            <strong>Blessing: </strong> R5 000 p/m <br />
-          </div>
-        </div>
-      </div>
-
-    </div>
+    <div ng-view></div>
 
     <div class="navbar-spacer"></div>
     <ul class="navbar-list">
