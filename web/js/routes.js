@@ -12,11 +12,6 @@ angular.module('Routes', []).config(['$routeProvider', '$locationProvider', func
             controller: 'AboutController'
         })
 
-        .when('/advertising', {
-            templateUrl: 'views/advertising.html',
-            controller: 'AdvertisingController'
-        })
-
         .when('/contact', {
             templateUrl: 'views/contact.html',
             controller: 'ContactController'

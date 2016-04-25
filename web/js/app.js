@@ -4,7 +4,6 @@ angular.module('BlesserApp',
 		'Routes',
 
     'AboutCtrl',
-    'AdvertisingCtrl',
     'ContactCtrl',
     'CookiesCtrl',
     'MainCtrl',
