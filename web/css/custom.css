@@ -2,7 +2,11 @@
   max-width: 800px; }
 .header {
   margin-top: 6rem;
+  margin-bottom: 6rem;
   text-align: center; }
+.header img{
+    width: 100%;
+    max-width: 605px; }
 .value-prop {
   margin-top: 1rem; }
 .value-props {
@@ -55,7 +59,7 @@
   white-space: pre;
   word-wrap: break-word }
 .example {
-  position: relative; 
+  position: relative;
   margin-top: 4rem; }
 .example-header {
   font-weight: 600;
@@ -83,11 +87,28 @@
   left: 5px; }
 .navbar {
   display: none; }
+.navbar #searchInput {
+  margin-top: 1.3rem; }
+b.notifications{
+  background: #33C3F0;
+  padding: 10px;
+  border-radius: 10px;
+  color: #fff; }
+.blesser-tile {
+  border: 1px solid #F5F5F5;
+  padding: 10px; }
+
+.blesser-tile a img{
+  width: 25px;
 
 /* Larger than phone */
 @media (min-width: 550px) {
   .header {
-    margin-top: 18rem; }
+    margin-top: 18rem;
+    margin-bottom: 18rem;}
+  .header img{
+    width: 100%;
+    max-width: 605px; }
   .value-props {
     margin-top: 9rem;
     margin-bottom: 7rem; }
@@ -97,7 +118,7 @@
   .example-grid .columns {
     margin-bottom: 1.5rem; }
   .docs-section {
-    padding: 6rem 0; }
+    padding: 3rem 0; }
   .example-send-yourself-copy {
     float: right;
     margin-top: 12px; }
@@ -168,11 +189,10 @@
     border: 1px solid #eee;
     border-radius: 4px;
     top: 92%;
-    left: -50%;
     -webkit-filter: drop-shadow(0 0 6px rgba(0,0,0,.1));
        -moz-filter: drop-shadow(0 0 6px rgba(0,0,0,.1));
             filter: drop-shadow(0 0 6px rgba(0,0,0,.1)); }
-  .popover-item:first-child .popover-link:after, 
+  .popover-item:first-child .popover-link:after,
   .popover-item:first-child .popover-link:before {
     bottom: 100%;
     left: 50%;
