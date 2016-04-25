@@ -12,7 +12,6 @@ angular.module('BlesserApp',
 		'TermsCtrl',
 
 		'BlesserService',
-		'ConversationService',
 		'MessageService',
 		'UserService'
 
