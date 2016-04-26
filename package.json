@@ -6,6 +6,10 @@
       "express" : "4.13.4",
       "mongoose" : "4.4.13",
       "body-parser" : "1.15.0",
-      "method-override" : "2.3.5"
+      "method-override" : "2.3.5",
+      "passport" : "0.3.2",
+      "passport-local" : "1.0.0",
+      "express-session" : "1.13.0",
+      "bcrypt-nodejs" : "0.0.3"
     }
 }

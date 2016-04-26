@@ -4,6 +4,8 @@ var app            = express();
 var bodyParser     = require('body-parser');
 var methodOverride = require('method-override');
 var mongoose       = require('mongoose');
+var passport       = require('passport');
+var expressSession = require('express-session');
 
 // configuration ===========================================
 
@@ -32,8 +34,17 @@ app.use(methodOverride('X-HTTP-Method-Override'));
 // set the static files location /web/img will be /img for users
 app.use(express.static(__dirname + '/web'));
 
+// configure passport and passport local for session and authentication
+app.use(expressSession({secret: 'adsfaqweasdfashoiauhe'}));
+app.use(passport.initialize());
+app.use(passport.session());
+
+// Initialize Passport
+var initPassport = require('./cloud/config/passport/init');
+initPassport(passport);
+
 // routes ==================================================
-require('./cloud/config/routes')(app); // configure our routes
+require('./cloud/config/routes')(app, passport); // configure our routes
 
 // start app ===============================================
 // startup our app at http://localhost:5000

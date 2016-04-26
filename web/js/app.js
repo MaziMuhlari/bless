@@ -17,6 +17,7 @@ angular.module('BlesserApp',
 
 		'BlesserService',
 		'MessageService',
-		'UserService'
+		'UserService',
+		'ReportService'
 
 		]);
