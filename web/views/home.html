@@ -1,76 +1,16 @@
 <div class="docs-section" id="intro">
-  <div class="row">
-    <div class="six columns">
-      <div class="blesser-tile emojinate">
-        <a href="/messages" class="u-pull-right"><img src="/img/heart.png" title="Contact User" alt="Contact User" /></a>
-        <strong>Name: </strong> John Doe <br />
-        <strong>Description: </strong> I am looking for a young girl that will not get attached. She must be willing to see me sporadically. <br />
-        <strong>Blessing: </strong> R5 000 p/m <br />
-      </div>
-    </div>
-    <div class="six columns">
-      <div class="blesser-tile">
-        <a href="/messages" class="u-pull-right"><img src="/img/heart.png" title="Contact User" alt="Contact User" /></a>
-        <strong>Name: </strong> John Doe <br />
-        <strong>Description: </strong> I am looking for a young girl that will not get attached. She must be willing to see me sporadically. <br />
-        <strong>Blessing: </strong> R5 000 p/m <br />
-      </div>
-    </div>
-  </div>
 
-  <div class="row">
-    <div class="six columns">
-      <div class="blesser-tile">
-        <a href="/messages" class="u-pull-right"><img src="/img/heart.png" title="Contact User" alt="Contact User" /></a>
-        <strong>Name: </strong> John Doe<br />
-        <strong>Description: </strong> I am looking for a young girl that will not get attached. She must be willing to see me sporadically. <br />
-        <strong>Blessing: </strong> R5 000 p/m <br />
-      </div>
-    </div>
-    <div class="six columns">
-      <div class="blesser-tile">
-        <a href="/messages" class="u-pull-right"><img src="/img/heart.png" title="Contact User" alt="Contact User" /></a>
-        <strong>Name: </strong> John Doe <br />
-        <strong>Description: </strong> I am looking for a young girl that will not get attached. She must be willing to see me sporadically. <br />
-        <strong>Blessing: </strong> R5 000 p/m <br />
-      </div>
-    </div>
-  </div>
-
-  <div class="row">
-    <div class="six columns">
-      <div class="blesser-tile">
-        <a href="/messages" class="u-pull-right"><img src="/img/heart.png" title="Contact User" alt="Contact User" /></a>
-        <strong>Name: </strong> John Doe<br />
-        <strong>Description: </strong> I am looking for a young girl that will not get attached. She must be willing to see me sporadically. <br />
-        <strong>Blessing: </strong> R5 000 p/m <br />
-      </div>
-    </div>
-    <div class="six columns">
-      <div class="blesser-tile">
-        <a href="/messages" class="u-pull-right"><img src="/img/heart.png" title="Contact User" alt="Contact User" /></a>
-        <strong>Name: </strong> John Doe <br />
-        <strong>Description: </strong> I am looking for a young girl that will not get attached. She must be willing to see me sporadically. <br />
-        <strong>Blessing: </strong> R5 000 p/m <br />
-      </div>
-    </div>
-  </div>
-
-  <div class="row">
-    <div class="six columns">
-      <div class="blesser-tile">
-        <a href="/messages" class="u-pull-right"><img src="/img/heart.png" title="Contact User" alt="Contact User" /></a>
-        <strong>Name: </strong> John Doe<br />
-        <strong>Description: </strong> I am looking for a young girl that will not get attached. She must be willing to see me sporadically. <br />
-        <strong>Blessing: </strong> R5 000 p/m <br />
-      </div>
-    </div>
-    <div class="six columns">
-      <div class="blesser-tile">
-        <a href="/messages" class="u-pull-right"><img src="/img/heart.png" title="Contact User" alt="Contact User" /></a>
-        <strong>Name: </strong> John Doe <br />
-        <strong>Description: </strong> I am looking for a young girl that will not get attached. She must be willing to see me sporadically. <br />
-        <strong>Blessing: </strong> R5 000 p/m <br />
+  <div class="">
+    <div ng-repeat="blesser in blessers | filter: searchbar">
+      <div class="row">
+        <div class="twelve columns">
+          <div class="blesser-tile emojinate">
+            <a href="/messages/{{blesser._id}}" class="u-pull-right"><img src="/img/heart.png" title="Contact User" alt="Contact User" /></a>
+            <strong>Name: </strong> {{blesser.name}} {{blesser.surname}} <br />
+            <strong>Description: </strong> {{blesser.description}} <br />
+            <strong>Blessing: </strong> R{{blesser.blessing}} p/m <br />
+          </div>
+        </div>
       </div>
     </div>
   </div>

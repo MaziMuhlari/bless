@@ -1,0 +1,42 @@
+<div class="docs-section" id="intro">
+  <div class="row">
+    <div class="twelve columns">
+      <div class="animated bounce">
+        <h5>Register</h5>
+        <p>
+          Please note that all registrations are currently by invite only. You can enter your email address and password below and
+          we will include you in our next quota once you have reached the fron of the queue. You can also give a short motivation as
+          to why we should fast track your registration if you want the process to go quicker.
+        </p>
+        <p>
+          {{#if messages}}
+            <div class="message">{{messages}}</div>
+          {{/if}}
+        </p>
+        <form action="/register" method="post">
+          <div class="row">
+            <div class="six columns">
+              <label for="emailInput">Email</label>
+              <input class="u-full-width" type="email" name="username" placeholder="Email" id="emailInput">
+            </div>
+            <div class="six columns">
+              <label for="passwordInput">Password</label>
+              <input class="u-full-width" type="password" name="password" placeholder="Password" id="passwordInput">
+            </div>
+          </div>
+          <div class="row">
+            <div class="twelve columns">
+              <label for="genderInput">Gender</label>
+              <select class="u-full-width" name="gender" id="genderInput">
+                <option value="Other">Other</option>
+                <option value="Male">Male</option>
+                <option value="Female">Female</option>
+              </select>
+            </div>
+          </div>
+          <input class="button-primary" type="submit" value="Register">
+        </form>
+      </div>
+    </div>
+  </div>
+</div>

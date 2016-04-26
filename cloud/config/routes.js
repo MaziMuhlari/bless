@@ -79,7 +79,6 @@ module.exports = function(app, passport) {
   });
 
 	app.get('/api/user/blessers', function(req, res) {
-		console.log(req.query.take + " " + req.query.skip);
     User
 		.find({ is_blesser: true }, { password: 0 })
 		.sort({created_on: 'asc'})
@@ -142,11 +141,11 @@ module.exports = function(app, passport) {
   });
 
   app.get('/login', function(req, res) {
-      res.sendfile('./web/views/index.html');
+      res.render('login', { messages: req.flash('message') });
   });
 
   app.get('/register', function(req, res) {
-      res.sendfile('./web/views/index.html');
+      res.render('register', { messages: req.flash('message') });
   });
 
   app.get('/report', function(req, res) {
@@ -158,15 +157,15 @@ module.exports = function(app, passport) {
   });
 
   app.get('/messages', isAuthenticated, function(req, res) {
-      res.sendfile('./web/views/index.html', { user: req.user });
+      res.sendfile('./web/views/index.html');
   });
 
   app.get('/profile', isAuthenticated, function(req, res) {
-      res.sendfile('./web/views/index.html', { user: req.user });
+      res.sendfile('./web/views/index.html');
   });
 
   app.get('/page-not-found', function(req, res) {
-      res.sendfile('./web/views/index.html', { user: req.user });
+      res.sendfile('./web/views/index.html');
   });
 
   app.get('*', function(req, res) {

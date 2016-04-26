@@ -5,6 +5,7 @@ angular.module('MainCtrl', []).controller('MainController', function($scope, $ht
   $scope.blessers = [];
   $scope.take = 10;
   $scope.skip = 0;
+  $scope.searchbar = "";
 
   emojify.setConfig({
 
@@ -57,6 +58,7 @@ angular.module('MainCtrl', []).controller('MainController', function($scope, $ht
   };
 
   $scope.init.user();
+  $scope.click.more();
 
   $scope.logOut = function(){
     User.logout()

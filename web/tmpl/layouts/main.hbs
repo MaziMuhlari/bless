@@ -1,0 +1,122 @@
+<!DOCTYPE html>
+<html lang="en" ng-app="BlesserApp" ng-controller="MainController">
+<head>
+  <meta charset="utf-8">
+  <base href="/">
+  <title>{{title}}</title>
+  <meta name="description" content="Find your blesser. Get blessed. Amen.">
+  <meta name="author" content="blesser.co">
+  <meta name="viewport" content="width=device-width, initial-scale=1">
+  <link href='//fonts.googleapis.com/css?family=Raleway:400,300,600' rel='stylesheet' type='text/css'>
+
+  <link rel="stylesheet" href="/libs/skeleton-css/css/normalize.css">
+  <link rel="stylesheet" href="/libs/skeleton-css/css/skeleton.css">
+  <link rel="stylesheet" href="/libs/animate.css/animate.css">
+  <link rel="stylesheet" href="/css/custom.css">
+
+  <script src="//ajax.googleapis.com/ajax/libs/jquery/2.1.1/jquery.min.js"></script>
+  <script src="https://google-code-prettify.googlecode.com/svn/loader/run_prettify.js"></script>
+  <link rel="stylesheet" href="css/github-prettify-theme.css">
+  <script src="/js/site.js"></script>
+  <script src="/js/emojify.js"></script>
+
+  <link rel="icon" type="image/png" href="/img/favicon.png">
+
+  <script type="text/javascript" src="/libs/angular/angular.min.js"></script>
+  <script type="text/javascript" src="/libs/angular-route/angular-route.min.js"></script>
+  <script type="text/javascript" src="/libs/jquery/dist/jquery.min.js"></script>
+  <script type="text/javascript" src="/libs/parsleyjs/dist/parsley.min.js"></script>
+  <script type="text/javascript" src="/libs/nanobar/nanobar.min.js"></script>
+
+  <script src="/js/controllers/AboutCtrl.js"></script>
+  <script src="/js/controllers/ContactCtrl.js"></script>
+  <script src="/js/controllers/CookiesCtrl.js"></script>
+  <script src="/js/controllers/MainCtrl.js"></script>
+  <script src="/js/controllers/MessagesCtrl.js"></script>
+  <script src="/js/controllers/PrivacyCtrl.js"></script>
+  <script src="/js/controllers/TermsCtrl.js"></script>
+  <script src="/js/controllers/ReportCtrl.js"></script>
+  <script src="/js/controllers/ProfileCtrl.js"></script>
+  <script src="/js/controllers/LoginCtrl.js"></script>
+  <script src="/js/controllers/RegisterCtrl.js"></script>
+  <script src="/js/controllers/ByeCtrl.js"></script>
+  <script src="/js/controllers/MiscCtrl.js"></script>
+
+  <script src="/js/services/MessageService.js"></script>
+  <script src="/js/services/UserService.js"></script>
+  <script src="/js/services/ReportService.js"></script>
+
+  <script src="/js/routes.js"></script>
+  <script src="/js/app.js"></script>
+
+</head>
+<body class="code-snippets-visible">
+  <div class="container">
+    <section class="header">
+      <a href="/"><img src="/img/blesser-logo.png" /></a>
+      <h2 class="title">Find your blesser. Get blessed. Amen.</h2>
+      <a class="button button-primary" href="/register" ng-show="!user.logged_in">Join</a>
+    </section>
+
+    <div class="navbar-spacer"></div>
+    <nav class="navbar">
+      <div class="container">
+        <form>
+          <div class="row">
+            <div class="six columns">
+              <input class="u-full-width" type="search" placeholder="search for your blesser by location etc..." id="searchInput" ng-model="searchbar">
+            </div>
+            <div class="six columns">
+              <ul class="navbar-list u-pull-right" ng-show="user.logged_in">
+                <li class="navbar-item">
+                  <a class="navbar-link" href="#" data-popover="#codeNavPopover">Hi, {{user.username}} <b class="notifications">100</b></a>
+                  <div id="codeNavPopover" class="popover">
+                    <ul class="popover-list">
+                      <li class="popover-item">
+                        <a class="popover-link" href="/profile">Profile</a>
+                      </li>
+                      <li class="popover-item">
+                        <a class="popover-link" href="/messages">Messages</a>
+                      </li>
+                      <li class="popover-item">
+                        <a class="popover-link" href="#" ng-click="logOut()">Log out</a>
+                      </li>
+                    </ul>
+                  </div>
+                </li>
+              </ul>
+              <ul class="navbar-list u-pull-right" ng-show="!user.logged_in">
+                <li class="navbar-item">
+                  <a class="navbar-link" href="/login">Click here to get blessed!</a>
+                </li>
+              </ul>
+            </div>
+          </div>
+        </form>
+      </div>
+    </nav>
+
+    {{{body}}}
+
+    <div class="navbar-spacer"></div>
+    <ul class="navbar-list">
+      <li class="navbar-item"><a class="navbar-link" href="/">&#169; blesser.co</a></li>
+      <li class="navbar-item"><a class="navbar-link" href="/about">About</a></li>
+      <li class="navbar-item"><a class="navbar-link" href="/privacy">Privacy</a></li>
+      <li class="navbar-item"><a class="navbar-link" href="/terms">Terms</a></li>
+      <li class="navbar-item"><a class="navbar-link" href="/cookies">Cookies</a></li>
+      <li class="navbar-item"><a class="navbar-link" href="/contact">Contact</a></li>
+    </ul>
+
+  </div>
+
+  <script type="text/javascript">
+    var nanobar = new Nanobar({
+      bg: '#33C3F0',
+      target: null,
+      id: 'progress-nano'
+    });
+  </script>
+
+</body>
+</html>
