@@ -37,6 +37,26 @@ angular.module('Routes', []).config(['$routeProvider', '$locationProvider', func
             controller: 'TermsController'
         })
 
+        .when('/profile', {
+            templateUrl: 'views/profile.html',
+            controller: 'ProfileController'
+        })
+
+        .when('/report', {
+            templateUrl: 'views/report.html',
+            controller: 'ReportController'
+        })
+
+        .when('/get-blessed', {
+            templateUrl: 'views/join.html',
+            controller: 'JoinController'
+        })
+
+        .when('/logged-out', {
+            templateUrl: 'views/bye.html',
+            controller: 'ByeController'
+        })
+
         ;
 
     $locationProvider.html5Mode(true);

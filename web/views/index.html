@@ -32,6 +32,10 @@
   <script src="/js/controllers/MessagesCtrl.js"></script>
   <script src="/js/controllers/PrivacyCtrl.js"></script>
   <script src="/js/controllers/TermsCtrl.js"></script>
+  <script src="/js/controllers/ReportCtrl.js"></script>
+  <script src="/js/controllers/ProfileCtrl.js"></script>
+  <script src="/js/controllers/JoinCtrl.js"></script>
+  <script src="/js/controllers/ByeCtrl.js"></script>
 
   <script src="/js/services/BlesserService.js"></script>
   <script src="/js/services/MessageService.js"></script>
@@ -47,32 +51,7 @@
     <section class="header">
       <a href="/"><img src="/img/blesser-logo.png" /></a>
       <h2 class="title">Find your blesser. Get blessed. Amen.</h2>
-      <a class="button button-primary" href="#" ng-click="openJoinDialogue()" ng-show="!isLoggedIn">Join</a>
-      <div class="animated bounce" ng-show="joinDialogue">
-        <p>
-          Please note that all registrations are currently by invite only. You can enter your email address and password below and
-          we will include you in our next quota once you have reached the fron of the queue. You can also give a short motivation as
-          to why we should fast track your registration if you want the process to go quicker.
-        </p>
-        <form>
-          <div class="row">
-            <div class="six columns">
-              <label for="emailInput">Email</label>
-              <input class="u-full-width" type="email" placeholder="Email" id="emailInput">
-            </div>
-            <div class="six columns">
-              <label for="passwordInput">Password</label>
-              <input class="u-full-width" type="password" placeholder="Password" id="passwordInput">
-            </div>
-          </div>
-          <label for="motivationInput">Motivation</label>
-          <textarea class="u-full-width" placeholder="Tell us why we should fast track your applicaiton (leave blank to login if you have an account)" id="motivationInput"></textarea>
-          <input class="button-primary" type="submit" value="Login / Register">
-          <div>
-            <a href="#" class="u-pull-right" ng-click="closeJoinDialogue()">close the login and registration box</a>
-          </div>
-        </form>
-      </div>
+      <a class="button button-primary" href="/get-blessed" ng-show="!isLoggedIn">Join</a>
     </section>
 
     <div class="navbar-spacer"></div>
@@ -84,19 +63,27 @@
               <input class="u-full-width" type="search" placeholder="search for your blesser by location etc..." id="searchInput">
             </div>
             <div class="six columns">
-              <ul class="navbar-list u-pull-right">
+              <ul class="navbar-list u-pull-right" ng-show="isLoggedIn">
                 <li class="navbar-item">
                   <a class="navbar-link" href="#" data-popover="#codeNavPopover">Hi, Jane Doe <b class="notifications">100</b></a>
                   <div id="codeNavPopover" class="popover">
                     <ul class="popover-list">
                       <li class="popover-item">
+                        <a class="popover-link" href="/profile">Profile</a>
+                      </li>
+                      <li class="popover-item">
                         <a class="popover-link" href="/messages">Messages</a>
                       </li>
                       <li class="popover-item">
-                        <a class="popover-link" href="/log-out">Log out</a>
+                        <a class="popover-link" href="/logged-out">Log out</a>
                       </li>
                     </ul>
                   </div>
+                </li>
+              </ul>
+              <ul class="navbar-list u-pull-right" ng-show="!isLoggedIn">
+                <li class="navbar-item">
+                  <a class="navbar-link" href="/get-blessed">Click here to get blessed!</a>
                 </li>
               </ul>
             </div>
