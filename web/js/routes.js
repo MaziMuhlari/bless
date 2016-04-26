@@ -47,14 +47,24 @@ angular.module('Routes', []).config(['$routeProvider', '$locationProvider', func
             controller: 'ReportController'
         })
 
-        .when('/get-blessed', {
-            templateUrl: 'views/join.html',
-            controller: 'JoinController'
+        .when('/register', {
+            templateUrl: 'views/register.html',
+            controller: 'RegisterController'
+        })
+
+        .when('/login', {
+            templateUrl: 'views/login.html',
+            controller: 'LoginController'
         })
 
         .when('/logged-out', {
             templateUrl: 'views/bye.html',
             controller: 'ByeController'
+        })
+
+        .when('/page-not-found', {
+            templateUrl: 'views/404.html',
+            controller: 'MiscController'
         })
 
         ;

@@ -1,4 +1,5 @@
 angular.module('AboutCtrl', []).controller('AboutController', function($scope, $http, $window) {
+  $scope.title = "bless.er | about";
   emojify.setConfig({
 
     emojify_tag_type : 'div',           // Only run emojify.js on this element
@@ -12,5 +13,5 @@ angular.module('AboutCtrl', []).controller('AboutController', function($scope, $
         'CODE'    : 1
     }
   });
-  emojify.run();	
+  emojify.run();
 });

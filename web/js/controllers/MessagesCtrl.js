@@ -1,4 +1,5 @@
 angular.module('MessagesCtrl', []).controller('MessagesController', function($scope, $http, $window) {
+  $scope.title = "bless.er | messages";
   emojify.setConfig({
 
     emojify_tag_type : 'div',           // Only run emojify.js on this element
