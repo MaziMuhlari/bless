@@ -1,5 +1,5 @@
 angular.module('AboutCtrl', []).controller('AboutController', function($scope, $http, $window) {
-  $scope.title = "bless.er | about";
+  $scope.title = "blesser.co | about";
   emojify.setConfig({
 
     emojify_tag_type : 'div',           // Only run emojify.js on this element

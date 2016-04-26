@@ -1,6 +1,6 @@
 angular.module('MainCtrl', []).controller('MainController', function($scope, $http, $window, User) {
 
-  $scope.title = "bless.er | home";
+  $scope.title = "blesser.co | home";
   $scope.user = {};
 
   emojify.setConfig({

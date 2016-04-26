@@ -5,36 +5,40 @@
       <p>
         Create your blesser profile below. Remember that you can use a pseudonym for anonymities sake and you don't have to disclose
         your real name until you start messaging. You can activate and deactivate your blesser profile at any time. If you want to delete
-        your whole bless.er account you can email mazi.muhlari@gmail.com
+        your whole blesser.co account you can email mazi.muhlari@gmail.com
       </p>
-      <form>
+      <form action="/api/user/update" method="post">
         <div class="row">
           <div class="six columns">
             <label for="nameInput">Name</label>
-            <input class="u-full-width" type="text" placeholder="Jane" id="nameInput">
+            <input class="u-full-width" type="text" name="name" placeholder="Jane" id="nameInput">
           </div>
           <div class="six columns">
             <label for="surnameInput">Surname</label>
-            <input class="u-full-width" type="text" placeholder="Doe" id="surnameInput">
+            <input class="u-full-width" type="text" name="surname" placeholder="Doe" id="surnameInput">
           </div>
         </div>
         <div class="row">
-          <div class="twelve columns">
-            <label for="descriptionInput">Description</label>
-            <textarea class="u-full-width" placeholder="Tell us about yourself in 140 characters" id="descriptionInput"></textarea>
+          <div class="six columns">
+            <label for="genderInput">Gender</label>
+            <select class="u-full-width" name="gender" id="genderInput">
+              <option value="Other">Other</option>
+              <option value="Male">Male</option>
+              <option value="Female">Female</option>
+            </select>
           </div>
-        </div>
-        <div class="row">
-          <div class="twelve columns">
+          <div class="six columns">
             <label for="blessingInput">Blessing</label>
-            <input class="u-full-width" type="number" placeholder="R 5000" id="blessingInput" min="0">
+            <input class="u-full-width" type="number" name="blessing" placeholder="R 5000" min="0" id="blessingInput">
           </div>
         </div>
+        <label for="descriptionInput">Description</label>
+        <textarea class="u-full-width" placeholder="Describe the type of blessee you are looking for..." id="descriptionInput" name="description" maxlength="140"></textarea>
         <label class="example-send-yourself-copy">
-          <input type="checkbox">
+          <input type="checkbox" name="is_blesser">
           <span class="label-body">Activate blesser profile</span>
         </label>
-        <input class="button-primary" type="submit" value="Start Blessing">
+        <input class="button-primary" type="submit" value="Update">
       </form>
     </div>
   </div>
