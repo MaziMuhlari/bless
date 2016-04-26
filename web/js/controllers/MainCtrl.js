@@ -18,6 +18,16 @@ angular.module('MainCtrl', []).controller('MainController', function($scope, $ht
   });
   emojify.run();
 
+  $scope.logOut = function(){
+    User.logout()
+    .success(function(data){
+      window.location.reload("/logged-out");
+    })
+    .error(function(data){
+
+    });
+  };
+
   User.details()
   .success(function(data){
     if(data.logged_in){

@@ -29,6 +29,11 @@ module.exports = function(app, passport) {
 		failureFlash : false
 	}));
 
+	app.get('/log-out', function(req, res) {
+		req.logout();
+		res.redirect('/logged-out');
+	});
+
   app.get('/api/user/details', isAuthenticated, function(req, res){
     var user = {};
     if (req.user) {

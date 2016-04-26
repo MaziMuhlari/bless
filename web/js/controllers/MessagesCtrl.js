@@ -14,4 +14,15 @@ angular.module('MessagesCtrl', []).controller('MessagesController', function($sc
     }
   });
   emojify.run();
+
+  $scope.logOut = function(){
+    User.logout()
+    .success(function(data){
+      window.location.reload("/logged-out");
+    })
+    .error(function(data){
+
+    });
+  };
+  
 });
