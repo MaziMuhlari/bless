@@ -27,13 +27,17 @@ angular.module('MessagesCtrl', []).controller('MessagesController', function($sc
     sendMessage: function() {
       var from = $cookies.get('_id').substring(3, $cookies.get('_id').length - 1);
       $scope.message.from = from;
-      Message.send($scope.message)
-      .success(function(data){
-        $scope.messages.push(data);
-      })
-      .error(function(data){
+      if($scope.message.to){
+        Message.send($scope.message)
+        .success(function(data){
+          $scope.messages.push(data);
+        })
+        .error(function(data){
 
-      });
+        });
+      } else {
+        alert("Please select a recepient.");
+      }
     }
   };
 
