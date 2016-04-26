@@ -156,6 +156,8 @@ b.notifications{
   background: rgba(255, 165, 0, 0.22);
   border-left: 1px solid orange;
   padding: 10px; }
+.gray {
+  color: gray; }
 
 /* Larger than phone */
 @media (min-width: 550px) {

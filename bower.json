@@ -6,6 +6,8 @@
         "animate.css": "3.5.1",
         "angular": "1.5.5",
         "angular-route": "1.5.5",
+        "angular-resource": "1.5.5",
+        "angular-cookies": "1.5.5",
         "parsleyjs": "2.3.11",
         "nanobar": "0.4.1"
     }

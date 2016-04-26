@@ -1,4 +1,4 @@
-angular.module('ReportCtrl', []).controller('ReportController', function($scope, $http, $window) {
+angular.module('ReportCtrl', []).controller('ReportController', function($scope, $routeParams, $http, $window) {
   $scope.title = "blesser.co | report";
 
   $scope.logOut = function(){

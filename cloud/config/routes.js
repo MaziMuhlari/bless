@@ -1,4 +1,5 @@
 var User            = require('../models/user');
+var Message         = require('../models/message');
 
 var isAuthenticated = function (req, res, next) {
 	// if user is authenticated in the session, call the next() to call the next request handler
@@ -20,17 +21,28 @@ module.exports = function(app, passport) {
 	app.post('/register', passport.authenticate('register', {
 		successRedirect: '/',
 		failureRedirect: '/register',
-		failureFlash : false
+		failureFlash : true
 	}));
 
 	app.post('/login', passport.authenticate('login', {
 		successRedirect: '/',
 		failureRedirect: '/login',
-		failureFlash : false
+		failureFlash : true
 	}));
 
 	app.get('/log-out', function(req, res) {
 		req.logout();
+		res.clearCookie('_id');
+		res.clearCookie('username');
+		res.clearCookie('gender');
+		res.clearCookie('is_active');
+		res.clearCookie('name');
+		res.clearCookie('surname');
+		res.clearCookie('description');
+		res.clearCookie('is_blesser');
+		res.clearCookie('blessing');
+		res.clearCookie('created_on');
+		res.clearCookie('logged_in');
 		res.redirect('/logged-out');
 	});
 
@@ -93,23 +105,22 @@ module.exports = function(app, passport) {
 		});
   });
 
-	app.post('/api/user/profile', isAuthenticated, function(req, res){
-    var user = {};
-    if (req.user) {
-      user = {
-        _id: req.user._id,
-        created_on: req.user.created_on,
-        active: req.user.active,
-        gender: req.user.gender,
-        username: req.user.username,
-        logged_in: true
-      };
-    } else {
-      user = {
-        logged_in: false
-      };
-    }
-    res.json(user);
+	// Message
+
+	app.post('/api/message/send', isAuthenticated, function(req, res){
+		var users = [];
+		users.push(req.body.from);
+		users.push(req.body.to);
+		Message.create({
+			message: req.body.message,
+	    users: users,
+		}, function(err, message){
+		    if (err){
+	        res.send(err);
+				} else {
+					res.json(message);
+				}
+		});
   });
 
   /**
@@ -117,7 +128,32 @@ module.exports = function(app, passport) {
    */
 
   app.get('/', function(req, res) {
-      res.sendfile('./web/views/index.html');
+		if (req.user) {
+			res.cookie('_id', req.user._id, { maxAge: 2592000000 });
+			res.cookie('username', req.user.username, { maxAge: 2592000000 });
+			res.cookie('gender', req.user.gender, { maxAge: 2592000000 });
+			res.cookie('is_active', req.user.is_active, { maxAge: 2592000000 });
+			res.cookie('name', req.user.name, { maxAge: 2592000000 });
+			res.cookie('surname', req.user.surname, { maxAge: 2592000000 });
+			res.cookie('description', req.user.description, { maxAge: 2592000000 });
+			res.cookie('is_blesser', req.user.is_blesser, { maxAge: 2592000000 });
+			res.cookie('blessing', req.user.blessing, { maxAge: 2592000000 });
+			res.cookie('created_on', req.user.created_on, { maxAge: 2592000000 });
+			res.cookie('logged_in', true, { maxAge: 2592000000 });
+    } else {
+			res.clearCookie('_id');
+			res.clearCookie('username');
+			res.clearCookie('gender');
+			res.clearCookie('is_active');
+			res.clearCookie('name');
+			res.clearCookie('surname');
+			res.clearCookie('description');
+			res.clearCookie('is_blesser');
+			res.clearCookie('blessing');
+			res.clearCookie('created_on');
+			res.clearCookie('logged_in');
+    }
+    res.sendfile('./web/views/index.html');
   });
 
   app.get('/about', function(req, res) {
@@ -153,10 +189,25 @@ module.exports = function(app, passport) {
   });
 
   app.get('/logged-out', function(req, res) {
-      res.sendfile('./web/views/index.html');
+		res.clearCookie('_id');
+		res.clearCookie('username');
+		res.clearCookie('gender');
+		res.clearCookie('is_active');
+		res.clearCookie('name');
+		res.clearCookie('surname');
+		res.clearCookie('description');
+		res.clearCookie('is_blesser');
+		res.clearCookie('blessing');
+		res.clearCookie('created_on');
+		res.clearCookie('logged_in');
+    res.sendfile('./web/views/index.html');
   });
 
   app.get('/messages', isAuthenticated, function(req, res) {
+      res.sendfile('./web/views/index.html');
+  });
+
+	app.get('/messages/:id', isAuthenticated, function(req, res) {
       res.sendfile('./web/views/index.html');
   });
 

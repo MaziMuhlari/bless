@@ -1,5 +1,12 @@
-angular.module('MessagesCtrl', []).controller('MessagesController', function($scope, $http, $window) {
+angular.module('MessagesCtrl', []).controller('MessagesController', function($scope, $routeParams, $cookies, $http, $window) {
   $scope.title = "blesser.co | messages";
+
+  $scope.message = {
+    message: "",
+    from: $cookies.get('_id'),
+    to: $routeParams.id
+  }
+
   emojify.setConfig({
 
     emojify_tag_type : 'div',           // Only run emojify.js on this element
@@ -24,5 +31,5 @@ angular.module('MessagesCtrl', []).controller('MessagesController', function($sc
 
     });
   };
-  
+
 });

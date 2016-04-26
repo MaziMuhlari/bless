@@ -1,4 +1,4 @@
-angular.module('ProfileCtrl', []).controller('ProfileController', function($scope, $http, $window, User) {
+angular.module('ProfileCtrl', []).controller('ProfileController', function($scope, $routeParams, $http, $window, User) {
 
   $scope.title = "blesser.co | profile";
   $scope.user = {};

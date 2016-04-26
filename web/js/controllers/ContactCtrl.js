@@ -1,3 +1,3 @@
-angular.module('ContactCtrl', []).controller('ContactController', function($scope, $http, $window) {
+angular.module('ContactCtrl', []).controller('ContactController', function($scope, $routeParams, $http, $window) {
   $scope.title = "blesser.co | contact";
 });

@@ -3,29 +3,18 @@
     <div class="four columns">
       <div class="blesser-tile-list">
         <ul>
-          <li><a href="#">Jane Doe <b class="notifications u-pull-right">10</b></a></li>
-          <li><a href="#">Jane Doe</a></li>
-          <li><a href="#">Jane Doe</a></li>
-          <li><a href="#">Jane Doe</a></li>
-          <li><a href="#">Jane Doe</a></li>
-          <li><a href="#">Jane Doe</a></li>
-          <li><a href="#">Jane Doe</a></li>
-          <li><a href="#">Jane Doe</a></li>
-          <li><a href="#">Jane Doe</a></li>
-          <li><a href="#">Jane Doe</a></li>
-          <li><a href="#">Jane Doe</a></li>
-          <li><a href="#">Jane Doe</a></li>
-          <li><a href="#">Jane Doe</a></li>
-          <li><a href="#">Jane Doe</a></li>
-          <li><a href="#">Jane Doe</a></li>
-          <li><a href="#">Jane Doe</a></li>
-          <li><a href="#">Jane Doe</a></li>
-          <li><a href="#">Jane Doe</a></li>
-          <li><a href="#">Jane Doe</a></li>
-          <li><a href="#">Jane Doe</a></li>
-          <li><a href="#">Jane Doe</a></li>
-          <li><a href="#">Jane Doe</a></li>
-          <li><a href="#">Jane Doe</a></li>
+          <li>
+            <a href="/messages/132412341234">
+              Jane Doe <b class="notifications u-pull-right">10</b><br />
+              <small class="gray">Don't forget to send me the...</small><b class="u-pull-right gray">19:27</b>
+            </a>
+          </li>
+          <li>
+            <a href="/messages/123402345">
+              Jane Doe <b class="notifications u-pull-right">10</b><br />
+              <small class="gray">Don't forget to send me the...</small><b class="u-pull-right gray">19:27</b>
+            </a>
+          </li>
         </ul>
       </div>
     </div>
@@ -42,7 +31,7 @@
         <div class="you">What's up baby girl?<small>21:52</small></div>
         <div class="you">You good?<small>21:52</small></div>
       </div>
-      <form>
+      <form ng-submit="sendMessage()" ng-controller="MessagesController">
         <input class="u-full-width" type="text" placeholder="Write a reply..." id="messageInput">
         <input class="u-pull-right" type="submit" value="Send">
     </form>

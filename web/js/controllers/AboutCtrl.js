@@ -1,4 +1,4 @@
-angular.module('AboutCtrl', []).controller('AboutController', function($scope, $http, $window) {
+angular.module('AboutCtrl', []).controller('AboutController', function($scope, $routeParams, $http, $window) {
   $scope.title = "blesser.co | about";
   emojify.setConfig({
 

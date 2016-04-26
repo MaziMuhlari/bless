@@ -1,6 +1,7 @@
 angular.module('BlesserApp',
 	[
 		'ngRoute',
+		'ngCookies',
 		'Routes',
 
     'AboutCtrl',

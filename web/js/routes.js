@@ -27,6 +27,11 @@ angular.module('Routes', []).config(['$routeProvider', '$locationProvider', func
             controller: 'MessagesController'
         })
 
+        .when('/messages/:id', {
+            templateUrl: 'views/messages.html',
+            controller: 'MessagesController'
+        })
+
         .when('/privacy', {
             templateUrl: 'views/privacy.html',
             controller: 'PrivacyController'

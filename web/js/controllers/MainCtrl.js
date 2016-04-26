@@ -1,4 +1,4 @@
-angular.module('MainCtrl', []).controller('MainController', function($scope, $http, $window, User) {
+angular.module('MainCtrl', []).controller('MainController', function($scope, $routeParams, $http, $window, User) {
 
   $scope.title = "blesser.co | home";
   $scope.user = {};
