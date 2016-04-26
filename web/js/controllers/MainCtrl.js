@@ -43,8 +43,8 @@ angular.module('MainCtrl', []).controller('MainController', function($scope, $ht
       User.blessers($scope.take, $scope.skip)
       .success(function(data){
         if(data){
-          $scope.user = data;
-          $scope.skip++;
+          $scope.blessers.push.apply($scope.blessers, data);
+          $scope.skip += data.length;
           nanobar.go(100);
         }else{
           nanobar.go(100);

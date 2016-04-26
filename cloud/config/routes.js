@@ -79,6 +79,7 @@ module.exports = function(app, passport) {
   });
 
 	app.get('/api/user/blessers', function(req, res) {
+		console.log(req.query.take + " " + req.query.skip);
     User
 		.find({ is_blesser: true }, { password: 0 })
 		.sort({created_on: 'asc'})
