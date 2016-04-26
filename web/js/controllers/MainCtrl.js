@@ -2,6 +2,9 @@ angular.module('MainCtrl', []).controller('MainController', function($scope, $ht
 
   $scope.title = "blesser.co | home";
   $scope.user = {};
+  $scope.blessers = [];
+  $scope.take = 10;
+  $scope.skip = 0;
 
   emojify.setConfig({
 
@@ -30,6 +33,25 @@ angular.module('MainCtrl', []).controller('MainController', function($scope, $ht
       })
       .error(function(data){
 
+      });
+    }
+  };
+
+  $scope.click = {
+    more: function() {
+      nanobar.go(40);
+      User.blessers($scope.take, $scope.skip)
+      .success(function(data){
+        if(data){
+          $scope.user = data;
+          $scope.skip++;
+          nanobar.go(100);
+        }else{
+          nanobar.go(100);
+        }
+      })
+      .error(function(data){
+        nanobar.go(100);
       });
     }
   };

@@ -58,7 +58,7 @@ module.exports = function(app, passport) {
     res.json(user);
   });
 
-	app.post('/api/user/:id', function(req, res) {
+	app.post('/api/user/:id', isAuthenticated, function(req, res) {
     User.findOne({
         _id: req.params.id
     }, function(err, data){
@@ -76,6 +76,21 @@ module.exports = function(app, passport) {
           }
       })
     });
+  });
+
+	app.get('/api/user/blessers', function(req, res) {
+    User
+		.find({ is_blesser: true }, { password: 0 })
+		.sort({created_on: 'asc'})
+		.limit(req.query.take)
+		.skip(req.query.skip)
+		.exec(function(err, data){
+			if(err){
+					res.json(err);
+			}else{
+					res.json(data);
+			}
+		});
   });
 
 	app.post('/api/user/profile', isAuthenticated, function(req, res){

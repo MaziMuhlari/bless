@@ -6,8 +6,8 @@ angular.module('UserService', []).factory('User', ['$http', function($http) {
         update : function(data) {
             return $http.post('/api/user/' + data._id, data);
         },
-        blessers : function() {
-            return $http.get('/api/user/blessers');
+        blessers : function(take, skip) {
+            return $http.get('/api/user/blessers?take=' + take + '&skip=' + skip);
         },
         logout : function() {
             return $http.get('/log-out');
