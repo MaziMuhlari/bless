@@ -1,3 +1,5 @@
+var User            = require('../models/user');
+
 var isAuthenticated = function (req, res, next) {
 	// if user is authenticated in the session, call the next() to call the next request handler
 	// Passport adds this method to request object. A middleware is allowed to add properties to
@@ -6,7 +8,7 @@ var isAuthenticated = function (req, res, next) {
 		return next();
   }
 	// if the user is not authenticated then redirect him to the login page
-	res.redirect('/get-blessed');
+	res.redirect('/login');
 }
 
 module.exports = function(app, passport) {
@@ -17,15 +19,39 @@ module.exports = function(app, passport) {
 
 	app.post('/register', passport.authenticate('register', {
 		successRedirect: '/',
-		failureRedirect: '/get-blessed',
+		failureRedirect: '/register',
 		failureFlash : false
 	}));
 
 	app.post('/login', passport.authenticate('login', {
 		successRedirect: '/',
-		failureRedirect: '/get-blessed',
+		failureRedirect: '/login',
 		failureFlash : false
 	}));
+
+  app.get('/log-out', function(req, res) {
+		req.logout();
+		res.redirect('/logged-out');
+  });
+
+  app.get('/api/user/details', isAuthenticated, function(req, res){
+    var user = {};
+    if (req.user) {
+      user = {
+        _id: req.user._id,
+        created_on: req.user.created_on,
+        active: req.user.active,
+        gender: req.user.gender,
+        username: req.user.username,
+        logged_in: true
+      };
+    } else {
+      user = {
+        logged_in: false
+      };
+    }
+    res.json(user);
+  });
 
   /**
    * VIEWS
@@ -64,6 +90,10 @@ module.exports = function(app, passport) {
   });
 
   app.get('/report', function(req, res) {
+      res.sendfile('./web/views/index.html');
+  });
+
+  app.get('/logged-out', function(req, res) {
       res.sendfile('./web/views/index.html');
   });
 

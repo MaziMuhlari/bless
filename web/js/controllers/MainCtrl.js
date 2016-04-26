@@ -1,6 +1,8 @@
-angular.module('MainCtrl', []).controller('MainController', function($scope, $http, $window) {
+angular.module('MainCtrl', []).controller('MainController', function($scope, $http, $window, User) {
+
   $scope.title = "bless.er | home";
-  $scope.isLoggedIn = false;
+  $scope.user = {};
+
   emojify.setConfig({
 
     emojify_tag_type : 'div',           // Only run emojify.js on this element
@@ -15,4 +17,18 @@ angular.module('MainCtrl', []).controller('MainController', function($scope, $ht
     }
   });
   emojify.run();
+
+  User.details()
+  .success(function(data){
+    if(data.logged_in){
+      $scope.isLoggedIn = true;
+      $scope.user = data;
+    }else{
+      $scope.isLoggedIn = false;
+    }
+  })
+  .error(function(data){
+    $scope.isLoggedIn = false;
+  });
+
 });

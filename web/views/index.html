@@ -54,7 +54,7 @@
     <section class="header">
       <a href="/"><img src="/img/blesser-logo.png" /></a>
       <h2 class="title">Find your blesser. Get blessed. Amen.</h2>
-      <a class="button button-primary" href="/get-blessed" ng-show="!isLoggedIn">Join</a>
+      <a class="button button-primary" href="/register" ng-show="!user.logged_in">Join</a>
     </section>
 
     <div class="navbar-spacer"></div>
@@ -66,9 +66,9 @@
               <input class="u-full-width" type="search" placeholder="search for your blesser by location etc..." id="searchInput">
             </div>
             <div class="six columns">
-              <ul class="navbar-list u-pull-right" ng-show="isLoggedIn">
+              <ul class="navbar-list u-pull-right" ng-show="user.logged_in">
                 <li class="navbar-item">
-                  <a class="navbar-link" href="#" data-popover="#codeNavPopover">Hi, Jane Doe <b class="notifications">100</b></a>
+                  <a class="navbar-link" href="#" data-popover="#codeNavPopover">Hi, {{user.username}} <b class="notifications">100</b></a>
                   <div id="codeNavPopover" class="popover">
                     <ul class="popover-list">
                       <li class="popover-item">
@@ -84,9 +84,9 @@
                   </div>
                 </li>
               </ul>
-              <ul class="navbar-list u-pull-right" ng-show="!isLoggedIn">
+              <ul class="navbar-list u-pull-right" ng-show="!user.logged_in">
                 <li class="navbar-item">
-                  <a class="navbar-link" href="/get-blessed">Click here to get blessed!</a>
+                  <a class="navbar-link" href="/login">Click here to get blessed!</a>
                 </li>
               </ul>
             </div>
