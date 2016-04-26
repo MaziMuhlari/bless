@@ -18,6 +18,24 @@ angular.module('MainCtrl', []).controller('MainController', function($scope, $ht
   });
   emojify.run();
 
+  $scope.init = {
+    user: function() {
+      User.details()
+      .success(function(data){
+        if(data.logged_in){
+          $scope.user = data;
+        }else{
+
+        }
+      })
+      .error(function(data){
+
+      });
+    }
+  };
+
+  $scope.init.user();
+
   $scope.logOut = function(){
     User.logout()
     .success(function(data){
@@ -27,18 +45,5 @@ angular.module('MainCtrl', []).controller('MainController', function($scope, $ht
 
     });
   };
-
-  User.details()
-  .success(function(data){
-    if(data.logged_in){
-      $scope.isLoggedIn = true;
-      $scope.user = data;
-    }else{
-      $scope.isLoggedIn = false;
-    }
-  })
-  .error(function(data){
-    $scope.isLoggedIn = false;
-  });
 
 });

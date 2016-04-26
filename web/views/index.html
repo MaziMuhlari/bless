@@ -22,8 +22,11 @@
 
   <link rel="icon" type="image/png" href="/img/favicon.png">
 
-  <script src="/libs/angular/angular.min.js"></script>
-  <script src="/libs/angular-route/angular-route.min.js"></script>
+  <script type="text/javascript" src="/libs/angular/angular.min.js"></script>
+  <script type="text/javascript" src="/libs/angular-route/angular-route.min.js"></script>
+  <script type="text/javascript" src="/libs/jquery/dist/jquery.min.js"></script>
+  <script type="text/javascript" src="/libs/parsleyjs/dist/parsley.min.js"></script>
+  <script type="text/javascript" src="/libs/nanobar/nanobar.min.js"></script>
 
   <script src="/js/controllers/AboutCtrl.js"></script>
   <script src="/js/controllers/ContactCtrl.js"></script>
@@ -48,7 +51,6 @@
 
 </head>
 <body class="code-snippets-visible">
-
   <div class="container">
     <section class="header">
       <a href="/"><img src="/img/blesser-logo.png" /></a>
@@ -107,6 +109,14 @@
     </ul>
 
   </div>
+
+  <script type="text/javascript">
+    var nanobar = new Nanobar({
+      bg: '#33C3F0',
+      target: null,
+      id: 'progress-nano'
+    });
+  </script>
 
 </body>
 </html>
