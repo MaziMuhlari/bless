@@ -1,9 +1,10 @@
-angular.module('MessagesCtrl', []).controller('MessagesController', function($scope, $routeParams, $cookies, $http, $window) {
+angular.module('MessagesCtrl', []).controller('MessagesController', function($scope, $routeParams, $cookies, $http, $window, Message) {
   $scope.title = "blesser.co | messages";
 
+  $scope.messages = [];
   $scope.message = {
     message: "",
-    from: $cookies.get('_id'),
+    from: "",
     to: $routeParams.id
   }
 
@@ -21,6 +22,20 @@ angular.module('MessagesCtrl', []).controller('MessagesController', function($sc
     }
   });
   emojify.run();
+
+  $scope.click = {
+    sendMessage: function() {
+      var from = $cookies.get('_id').substring(3, $cookies.get('_id').length - 1);
+      $scope.message.from = from;
+      Message.send($scope.message)
+      .success(function(data){
+        $scope.messages.push(data);
+      })
+      .error(function(data){
+
+      });
+    }
+  };
 
   $scope.logOut = function(){
     User.logout()
