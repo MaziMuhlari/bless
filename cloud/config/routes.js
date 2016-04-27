@@ -140,6 +140,21 @@ module.exports = function(app, passport) {
 		});
   });
 
+	app.get('/api/conversations', isAuthenticated, function(req, res){
+		Conversation.find({
+			 recepients: mongoose.Types.ObjectId(req.query.user_id)
+		})
+		.populate("recepients")
+		.sort({last_message_sent: 'desc'})
+		.exec(function(err, conversations){
+		    if (err){
+	        res.send(err);
+				} else {
+					res.json(conversations);
+				}
+		});
+  });
+
 	// Message
 
 	app.get('/api/messages', isAuthenticated, function(req, res){
@@ -166,7 +181,17 @@ module.exports = function(app, passport) {
 		    if (err){
 	        res.send(err);
 				} else {
+					Conversation.update({
+						_id: req.query.conversation_id
+					}, {
+						$set : {
+							last_message_excerpt: req.query.message,
+					    last_message_sent: new Date()
+						}
+					}).exec();
+
 					res.json(message);
+
 				}
 		});
   });

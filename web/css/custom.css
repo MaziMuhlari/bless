@@ -112,7 +112,8 @@ b.notifications{
   padding: 8px; }
 .blesser-tile-list ul li a {
   text-decoration: none;
-  display: block; }
+  display: inline-block;
+  width: 100%; }
 .blesser-tile-list ul li a b.notifications {
   padding: 3px;
   font-size: 10px;}
@@ -158,6 +159,11 @@ b.notifications{
   padding: 10px; }
 .gray {
   color: gray; }
+b.gray{
+  font-size: 12px; }
+.selected-conversation{
+  background: #E0F7FA;
+}
 
 /* Larger than phone */
 @media (min-width: 550px) {

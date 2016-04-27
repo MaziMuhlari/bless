@@ -8,7 +8,14 @@ angular.module('MainCtrl', []).controller('MainController', function($scope, $co
   $scope.searchbar = "";
 
   $scope.me = {
-    id: $cookies.get('_id').substring(3, $cookies.get('_id').length - 1)
+    id: function(){
+      if($cookies.get('_id')){
+        var value = $cookies.get('_id').substring(3, $cookies.get('_id').length - 1);
+        return value;
+      }else{
+        return 0;
+      }
+    }
   };
 
   emojify.setConfig({

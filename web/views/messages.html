@@ -3,16 +3,16 @@
     <div class="four columns">
       <div class="blesser-tile-list">
         <ul>
-          <li>
-            <a href="/messages/132412341234">
-              Jane Doe <b class="notifications u-pull-right">10</b><br />
-              <small class="gray">Don't forget to send me the...</small><b class="u-pull-right gray">19:27</b>
+          <li ng-repeat="conversation in conversations">
+            <a ng-if="conversation.recepients[0]._id != me.id()" href="/messages/{{conversation.recepients[0]._id}}">
+              {{conversation.recepients[0].name}} {{conversation.recepients[0].surname}} <b class="notifications u-pull-right">10</b><br />
+              <div><small class="gray">{{conversation.last_message_excerpt}}</small></div>
+              <b class="u-pull-right gray">{{conversation.last_message_sent | amCalendar:referenceTime:formats }}</b>
             </a>
-          </li>
-          <li>
-            <a href="/messages/123402345">
-              Jane Doe <b class="notifications u-pull-right">10</b><br />
-              <small class="gray">Don't forget to send me the...</small><b class="u-pull-right gray">19:27</b>
+            <a ng-if="conversation.recepients[1]._id != me.id()" href="/messages/{{conversation.recepients[1]._id}}">
+              {{conversation.recepients[1].name}} {{conversation.recepients[1].surname}} <b class="notifications u-pull-right">10</b><br />
+              <div><small class="gray">{{conversation.last_message_excerpt}}</small></div>
+              <b class="u-pull-right gray">{{conversation.last_message_sent | amCalendar:referenceTime:formats }}</b>
             </a>
           </li>
         </ul>
@@ -25,8 +25,8 @@
         </a>
       </h5>
       <div class="blesser-tile-message emojinate" ng-repeat="message in messages">
-        <div ng-if="message.composer == me.id" class="me">{{message.message}}<small am-time-ago="message.created_on"></small></div>
-        <div ng-if="message.composer != me.id" class="you">{{message.message}}<small am-time-ago="message.created_on"></small></div>
+        <div ng-if="message.composer == me.id()" class="me">{{message.message}}<small am-time-ago="message.created_on"></small></div>
+        <div ng-if="message.composer != me.id()" class="you">{{message.message}}<small am-time-ago="message.created_on"></small></div>
       </div>
       <form ng-submit="click.sendMessage()" ng-controller="MessagesController">
         <input name="message" class="u-full-width" type="text" placeholder="Write a reply..." id="messageInput" ng-model="message.message"/>
