@@ -1,4 +1,4 @@
-angular.module('MessagesCtrl', []).controller('MessagesController', function($scope, $routeParams, $cookies, $http, $window, Message) {
+angular.module('MessagesCtrl', []).controller('MessagesController', function($scope, $routeParams, $cookies, $http, $window, Message, Conversation) {
   $scope.title = "blesser.co | messages";
 
   $scope.me = {
@@ -11,6 +11,13 @@ angular.module('MessagesCtrl', []).controller('MessagesController', function($sc
     from: "",
     to: $routeParams.id
   }
+
+  $scope.conversation = {
+    creator: $scope.me.id,
+    recepient: $routeParams.id
+  }
+
+  $scope.activeConversation = {};
 
   emojify.setConfig({
 
@@ -42,20 +49,26 @@ angular.module('MessagesCtrl', []).controller('MessagesController', function($sc
         alert("Please select a recepient.");
       }
     },
+    startConversation: function() {
+      Conversation.start($scope.conversation)
+      .success(function(data){
+        $scope.activeConversation = data;
+      })
+      .error(function(data){
+
+      });
+    },
     conversation: function() {
       $scope.message.from = $scope.me.id;
-      alert(JSON.stringify($scope.message));
       Message.conversation($scope.message)
       .success(function(data){
-        $scope.messages.push.apply($scope.messages, data);
+        $scope.messages = data;
       })
       .error(function(data){
 
       });
     }
   };
-
-  $scope.click.conversation();
 
   $scope.logOut = function(){
     User.logout()

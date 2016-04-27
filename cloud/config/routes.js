@@ -1,6 +1,7 @@
 var mongoose = require('mongoose');
 var User            = require('../models/user');
 var Message         = require('../models/message');
+var Conversation         = require('../models/conversation');
 
 var isAuthenticated = function (req, res, next) {
 	// if user is authenticated in the session, call the next() to call the next request handler
@@ -106,24 +107,62 @@ module.exports = function(app, passport) {
 		});
   });
 
-	// Message
+	// Conversation
 
-	app.get('/api/conversation', isAuthenticated, function(req, res){
-		Message.find({
-			$and: [ { 'users': mongoose.Types.ObjectId(req.query.from) }, { 'users': mongoose.Types.ObjectId(req.query.to) } ]
-		}, function(err, messages){
+	app.post('/api/conversation', isAuthenticated, function(req, res){
+		Conversation.findOne({
+			$and: [
+				{ 'recepients': mongoose.Types.ObjectId(req.query.creator) },
+				{ 'recepients': mongoose.Types.ObjectId(req.query.recepient) }
+			]
+		})
+		.populate("recepients")
+		.exec(function(err, conversation){
 		    if (err){
 	        res.send(err);
-				} else {
-					res.json(messages);
+				} else if(conversation){
+					res.json(conversation);
+				}else{
+					var recepients = [];
+					recepients.push(req.query.creator);
+					recepients.push(req.query.recepient);
+					Conversation.create({
+						creator: req.query.creator,
+						recepients: recepients
+					}, function(err, conversation){
+					    if (err){
+				        res.send(err);
+							} else {
+								res.json(conversation);
+							}
+					});
 				}
 		});
   });
 
 	app.get('/api/conversations', isAuthenticated, function(req, res){
+		Conversation.find({
+			recepients: mongoose.Types.ObjectId(req.query.from)
+		}, function(err, conversations){
+		    if (err){
+	        res.send(err);
+				} else {
+					res.json(conversations);
+				}
+		});
+  });
+
+	// Message
+
+	app.get('/api/conversation', isAuthenticated, function(req, res){
 		Message.find({
-			users: mongoose.Types.ObjectId(req.query.from)
-		}, function(err, messages){
+			$and: [
+				{ 'conversation.recepients': mongoose.Types.ObjectId(req.query.from) },
+				{ 'conversation.recepients': mongoose.Types.ObjectId(req.query.to) }
+			]
+		})
+		.populate("conversation")
+		.exec(function(err, messages){
 		    if (err){
 	        res.send(err);
 				} else {
@@ -134,13 +173,9 @@ module.exports = function(app, passport) {
 
 
 	app.post('/api/message/send', isAuthenticated, function(req, res){
-		var recepients = [];
-		recepients.push(req.body.from);
-		recepients.push(req.body.to);
 		Message.create({
 			message: req.body.message,
-			sender: req.body.from,
-	    recepients: recepients,
+			conversation: req.body.conversation
 		}, function(err, message){
 		    if (err){
 	        res.send(err);

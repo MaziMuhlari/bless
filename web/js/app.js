@@ -18,6 +18,7 @@ angular.module('BlesserApp',
 		'ByeCtrl',
 		'MiscCtrl',
 
+		'ConversationService',
 		'MessageService',
 		'UserService',
 		'ReportService'
