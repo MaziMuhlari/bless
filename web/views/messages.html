@@ -28,7 +28,7 @@
         <div ng-if="message.composer == me.id()" class="me">{{message.message}}<small am-time-ago="message.created_on"></small></div>
         <div ng-if="message.composer != me.id()" class="you">{{message.message}}<small am-time-ago="message.created_on"></small></div>
       </div>
-      <form ng-submit="click.sendMessage()" ng-controller="MessagesController">
+      <form ng-submit="click.sendMessage()">
         <input name="message" class="u-full-width" type="text" placeholder="Write a reply..." id="messageInput" ng-model="message.message"/>
         <input name="from" type="hidden" ng-model="message.from"/>
         <input name="to" type="hidden" ng-model="message.to"/>
