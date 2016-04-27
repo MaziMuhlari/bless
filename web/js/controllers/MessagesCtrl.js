@@ -58,11 +58,11 @@ angular.module('MessagesCtrl', []).controller('MessagesController', function($sc
     },
     sendMessage: function() {
       nanobar.go(40);
+      console.log($scope.activeConversation);
       if($scope.message.to && $scope.activeConversation){
         Message.send($scope.message, $scope.activeConversation, $scope.me.id())
         .success(function(data){
           $scope.messages.push(data);
-          console.log($scope.messages);
         })
         .error(function(data){
 
@@ -100,6 +100,7 @@ angular.module('MessagesCtrl', []).controller('MessagesController', function($sc
         Conversation.start($scope.conversation)
         .success(function(data){
           $scope.activeConversation = data;
+          console.log("Active Conversation: ");
           console.log(data);
           $scope.click.getMessages();
         })
@@ -111,8 +112,6 @@ angular.module('MessagesCtrl', []).controller('MessagesController', function($sc
     }
   };
 
-  //$scope.click.init();
-
   $scope.logOut = function(){
     User.logout()
     .success(function(data){
@@ -122,5 +121,9 @@ angular.module('MessagesCtrl', []).controller('MessagesController', function($sc
 
     });
   };
+
+  $timeout(function() {
+      $scope.click.init();
+  }, 1000);
 
 });
