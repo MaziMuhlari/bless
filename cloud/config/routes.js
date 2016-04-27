@@ -121,7 +121,9 @@ module.exports = function(app, passport) {
 		    if (err){
 	        res.send(err);
 				} else if(conversation){
-					conversation.read.push(req.query.creator);
+					var arr = [];
+					arr.push(mongoose.Types.ObjectId(req.query.creator));
+					Array.prototype.push.apply(conversation.read, arr);
           conversation.save(function (err){
               if(err){
                   res.send(err);
@@ -188,12 +190,14 @@ module.exports = function(app, passport) {
 		    if (err){
 	        res.send(err);
 				} else {
+					var arr = [];
+					arr.push(mongoose.Types.ObjectId(req.query.composer));
 					Conversation.update({
 						_id: req.query.conversation_id
 					}, {
 						$set : {
 							last_message_excerpt: req.query.message,
-							read: req.query.composer,
+							read: arr,
 					    last_message_sent: new Date()
 						}
 					}).exec();

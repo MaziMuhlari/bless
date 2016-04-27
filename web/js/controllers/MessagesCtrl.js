@@ -100,6 +100,7 @@ angular.module('MessagesCtrl', []).controller('MessagesController', function($sc
         Conversation.start($scope.conversation)
         .success(function(data){
           $scope.activeConversation = data;
+          console.log(data);
           $scope.click.getMessages();
         })
         .error(function(data){
@@ -110,7 +111,7 @@ angular.module('MessagesCtrl', []).controller('MessagesController', function($sc
     }
   };
 
-  $scope.click.init();
+  //$scope.click.init();
 
   $scope.logOut = function(){
     User.logout()
