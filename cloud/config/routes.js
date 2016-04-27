@@ -140,26 +140,11 @@ module.exports = function(app, passport) {
 		});
   });
 
-	app.get('/api/conversations', isAuthenticated, function(req, res){
-		Conversation.find({
-			recepients: mongoose.Types.ObjectId(req.query.from)
-		}, function(err, conversations){
-		    if (err){
-	        res.send(err);
-				} else {
-					res.json(conversations);
-				}
-		});
-  });
-
 	// Message
 
-	app.get('/api/conversation', isAuthenticated, function(req, res){
+	app.get('/api/messages', isAuthenticated, function(req, res){
 		Message.find({
-			$and: [
-				{ 'conversation.recepients': mongoose.Types.ObjectId(req.query.from) },
-				{ 'conversation.recepients': mongoose.Types.ObjectId(req.query.to) }
-			]
+			conversation: req.query.conversation_id
 		})
 		.populate("conversation")
 		.exec(function(err, messages){
@@ -174,8 +159,9 @@ module.exports = function(app, passport) {
 
 	app.post('/api/message/send', isAuthenticated, function(req, res){
 		Message.create({
-			message: req.body.message,
-			conversation: req.body.conversation
+			message: req.query.message,
+			conversation: req.query.conversation_id,
+			composer: req.query.composer,
 		}, function(err, message){
 		    if (err){
 	        res.send(err);
