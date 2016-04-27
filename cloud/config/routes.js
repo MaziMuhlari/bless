@@ -1,3 +1,4 @@
+var mongoose = require('mongoose');
 var User            = require('../models/user');
 var Message         = require('../models/message');
 
@@ -107,13 +108,39 @@ module.exports = function(app, passport) {
 
 	// Message
 
+	app.get('/api/conversation', isAuthenticated, function(req, res){
+		Message.find({
+			$and: [ { 'users': mongoose.Types.ObjectId(req.query.from) }, { 'users': mongoose.Types.ObjectId(req.query.to) } ]
+		}, function(err, messages){
+		    if (err){
+	        res.send(err);
+				} else {
+					res.json(messages);
+				}
+		});
+  });
+
+	app.get('/api/conversations', isAuthenticated, function(req, res){
+		Message.find({
+			users: mongoose.Types.ObjectId(req.query.from)
+		}, function(err, messages){
+		    if (err){
+	        res.send(err);
+				} else {
+					res.json(messages);
+				}
+		});
+  });
+
+
 	app.post('/api/message/send', isAuthenticated, function(req, res){
-		var users = [];
-		users.push(req.body.from);
-		users.push(req.body.to);
+		var recepients = [];
+		recepients.push(req.body.from);
+		recepients.push(req.body.to);
 		Message.create({
 			message: req.body.message,
-	    users: users,
+			sender: req.body.from,
+	    recepients: recepients,
 		}, function(err, message){
 		    if (err){
 	        res.send(err);

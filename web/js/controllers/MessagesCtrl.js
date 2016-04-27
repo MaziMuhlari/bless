@@ -1,6 +1,10 @@
 angular.module('MessagesCtrl', []).controller('MessagesController', function($scope, $routeParams, $cookies, $http, $window, Message) {
   $scope.title = "blesser.co | messages";
 
+  $scope.me = {
+    id: $cookies.get('_id').substring(3, $cookies.get('_id').length - 1)
+  };
+
   $scope.messages = [];
   $scope.message = {
     message: "",
@@ -25,8 +29,7 @@ angular.module('MessagesCtrl', []).controller('MessagesController', function($sc
 
   $scope.click = {
     sendMessage: function() {
-      var from = $cookies.get('_id').substring(3, $cookies.get('_id').length - 1);
-      $scope.message.from = from;
+      $scope.message.from = $scope.me.id;
       if($scope.message.to){
         Message.send($scope.message)
         .success(function(data){
@@ -38,8 +41,21 @@ angular.module('MessagesCtrl', []).controller('MessagesController', function($sc
       } else {
         alert("Please select a recepient.");
       }
+    },
+    conversation: function() {
+      $scope.message.from = $scope.me.id;
+      alert(JSON.stringify($scope.message));
+      Message.conversation($scope.message)
+      .success(function(data){
+        $scope.messages.push.apply($scope.messages, data);
+      })
+      .error(function(data){
+
+      });
     }
   };
+
+  $scope.click.conversation();
 
   $scope.logOut = function(){
     User.logout()
