@@ -5,7 +5,10 @@
       <div class="row" ng-if="blesser._id != me.id()">
         <div class="twelve columns">
           <div class="blesser-tile emojinate">
-            <a href="/messages/{{blesser._id}}" class="u-pull-right"><img src="/img/heart.png" title="Contact User" alt="Contact User" /></a>
+            <a href="/messages/{{blesser._id}}" class="u-pull-right">
+              <img src="/img/heart.png" title="click the heart to chat to blesser" alt="click the heart to chat to blesser" />
+            </a>
+            <small class="u-pull-right" style="margin-top: 4px;margin-right: 5px;color: #AFAFAF;">click the heart to chat to blesser </small>
             <strong>Name: </strong> {{blesser.name}} {{blesser.surname}} <br />
             <strong>Description: </strong> {{blesser.description}} <br />
             <strong>Blessing: </strong> R{{blesser.blessing}} p/m <br />
