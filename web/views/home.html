@@ -1,8 +1,7 @@
 <div class="docs-section" id="intro">
-
   <div class="">
     <div ng-repeat="blesser in blessers | filter: searchbar">
-      <div class="row">
+      <div class="row" ng-if="blesser._id != me.id">
         <div class="twelve columns">
           <div class="blesser-tile emojinate">
             <a href="/messages/{{blesser._id}}" class="u-pull-right"><img src="/img/heart.png" title="Contact User" alt="Contact User" /></a>
@@ -14,11 +13,9 @@
       </div>
     </div>
   </div>
-
   <div class="row">
     <div class="twelve columns more">
       <a class="button" href="#" ng-click="click.more()">More ({{skip}} seen)</a>
     </div>
   </div>
-
 </div>

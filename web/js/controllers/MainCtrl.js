@@ -7,6 +7,10 @@ angular.module('MainCtrl', []).controller('MainController', function($scope, $co
   $scope.skip = 0;
   $scope.searchbar = "";
 
+  $scope.me = {
+    id: $cookies.get('_id').substring(3, $cookies.get('_id').length - 1)
+  };
+
   emojify.setConfig({
 
     emojify_tag_type : 'div',           // Only run emojify.js on this element
