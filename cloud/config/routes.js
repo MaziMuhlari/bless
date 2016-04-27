@@ -138,7 +138,11 @@ module.exports = function(app, passport) {
               if(err){
                   res.send(err);
               }else{
-                  res.json(conversation);
+								for (var x = 0; x < conversation.recepients.length; x++) {
+									conversation.recepients[x].username = "";
+									conversation.recepients[x].password = "";
+								}
+                res.json(conversation);
               }
           });
 				}else{
@@ -163,6 +167,10 @@ module.exports = function(app, passport) {
 									if (err){
 						        res.send(err);
 									} else {
+										for (var x = 0; x < conversation.recepients.length; x++) {
+											conversation.recepients[x].username = "";
+											conversation.recepients[x].password = "";
+										}
 										res.json(conversation);
 									}
 								});
@@ -182,6 +190,12 @@ module.exports = function(app, passport) {
 		    if (err){
 	        res.send(err);
 				} else {
+					for (var i = 0; i < conversations.length; i++) {
+						for (var x = 0; x < conversations[i].recepients.length; x++) {
+							conversations[i].recepients[x].username = "";
+							conversations[i].recepients[x].password = "";
+						}
+					}
 					res.json(conversations);
 				}
 		});
@@ -208,9 +222,7 @@ module.exports = function(app, passport) {
 	app.get('/api/messages', isAuthenticated, function(req, res){
 		Message.find({
 			conversation: req.query.conversation_id
-		})
-		.populate("conversation")
-		.exec(function(err, messages){
+		}, function(err, messages){
 		    if (err){
 	        res.send(err);
 				} else {
