@@ -69,6 +69,17 @@
         <form>
           <div class="row">
             <div class="six columns">
+              <ul class="navbar-list" ng-show="user.logged_in">
+                <li class="navbar-item">
+                  <a class="navbar-link" href="/profile">Profile</a>
+                </li>
+                <li class="navbar-item">
+                  <a class="navbar-link" href="/messages">Messages</a>
+                </li>
+                <li class="navbar-item">
+                  <a class="navbar-link" href="#" ng-click="logOut()">Log Out</a>
+                </li>
+              </ul>
               <ul class="navbar-list" ng-show="!user.logged_in">
                 <li class="navbar-item">
                   <a class="navbar-link" href="/login">Log In</a>
@@ -76,24 +87,6 @@
               </ul>
             </div>
             <div class="six columns">
-              <ul class="navbar-list u-pull-right" ng-show="user.logged_in">
-                <li class="navbar-item">
-                  <a class="navbar-link" href="#" data-popover="#codeNavPopover">Hi, {{user.username}} <b class="notifications">100</b></a>
-                  <div id="codeNavPopover" class="popover">
-                    <ul class="popover-list">
-                      <li class="popover-item">
-                        <a class="popover-link" href="/profile">Profile</a>
-                      </li>
-                      <li class="popover-item">
-                        <a class="popover-link" href="/messages">Messages</a>
-                      </li>
-                      <li class="popover-item">
-                        <a class="popover-link" href="#" ng-click="logOut()">Log out</a>
-                      </li>
-                    </ul>
-                  </div>
-                </li>
-              </ul>
               <ul class="navbar-list u-pull-right" ng-show="!user.logged_in">
                 <li class="navbar-item">
                   <a class="navbar-link" href="/login">Click here to get blessed!</a>

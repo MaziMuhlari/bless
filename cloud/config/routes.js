@@ -94,7 +94,7 @@ module.exports = function(app, passport) {
 
 	app.get('/api/user/blessers', function(req, res) {
     User
-		.find({ is_blesser: true }, { password: 0 })
+		.find({ is_blesser: true }, { password: 0, username: 0 })
 		.sort({created_on: 'asc'})
 		.limit(req.query.take)
 		.skip(req.query.skip)
@@ -113,7 +113,7 @@ module.exports = function(app, passport) {
 		if (req.user) {
 			res.json(true);
 		} else {
-			res.json(false);	
+			res.json(false);
 		}
   });
 
