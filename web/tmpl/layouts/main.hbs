@@ -69,7 +69,11 @@
         <form>
           <div class="row">
             <div class="six columns">
-              <input class="u-full-width" type="search" placeholder="search for your blesser by location etc..." id="searchInput" ng-model="searchbar">
+              <ul class="navbar-list" ng-show="!user.logged_in">
+                <li class="navbar-item">
+                  <a class="navbar-link" href="/login">Log In</a>
+                </li>
+              </ul>
             </div>
             <div class="six columns">
               <ul class="navbar-list u-pull-right" ng-show="user.logged_in">

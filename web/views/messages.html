@@ -1,9 +1,10 @@
 <div class="docs-section" id="intro">
+  <input class="u-full-width" type="search" placeholder="search for your blesser by name, surname etc..." id="searchInput" ng-model="search">
   <div class="row">
     <div class="four columns">
       <div class="blesser-tile-list">
         <ul>
-          <li ng-repeat="conversation in conversations track by conversation._id | filter:search">
+          <li ng-repeat="conversation in conversations | filter:search track by $index">
             <a ng-if="conversation.recepients[0]._id != me.id()" href="/messages/{{conversation.recepients[0]._id}}">
               {{conversation.recepients[0].name}} {{conversation.recepients[0].surname}} <b ng-if="conversation.read.indexOf(me.id())<0" class="notifications u-pull-right">{{conversation.read.count}}</b><br />
               <div><small class="gray">{{conversation.last_message_excerpt}}</small></div>
