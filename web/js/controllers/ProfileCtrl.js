@@ -4,6 +4,19 @@ angular.module('ProfileCtrl', []).controller('ProfileController', function($scop
   $scope.user = {};
 
   $scope.init = {
+    app: function() {
+      $http.get('/api/security/loggin-in')
+      .success(function(data){
+        if(data){
+          $scope.init.user();
+        }else{
+          window.location.reload('logged-out');
+        }
+      })
+      .error(function(data){
+        window.location.reload('logged-out');
+      });
+    },
     user: function() {
       nanobar.go(40);
       User.details()
@@ -39,7 +52,7 @@ angular.module('ProfileCtrl', []).controller('ProfileController', function($scop
     }
   };
 
-  $scope.init.user();
+  $scope.init.app();
 
   $scope.logOut = function(){
     User.logout()

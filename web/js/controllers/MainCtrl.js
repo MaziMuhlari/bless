@@ -6,7 +6,7 @@ angular.module('MainCtrl', []).controller('MainController', function($scope, $co
   $scope.take = 10;
   $scope.skip = 0;
   $scope.searchbar = "";
-  
+
   // Count of the unread messages
   $scope.unreadMessages = 0;
 
@@ -58,7 +58,7 @@ angular.module('MainCtrl', []).controller('MainController', function($scope, $co
       .error(function(data){
 
       });
-    },
+    }
   };
 
   $scope.click = {

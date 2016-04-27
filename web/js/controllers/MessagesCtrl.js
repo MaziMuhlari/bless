@@ -56,9 +56,19 @@ angular.module('MessagesCtrl', []).controller('MessagesController', function($sc
 
   $scope.click = {
     init: function() {
-      $scope.click.getConversations();
-      $scope.click.startConversation();
-      $scope.click.getUnreadMessageCount();
+      $http.get('/api/security/loggin-in')
+      .success(function(data){
+        if(data){
+          $scope.click.getConversations();
+          $scope.click.startConversation();
+          $scope.click.getUnreadMessageCount();
+        }else{
+          window.location.reload('logged-out');
+        }
+      })
+      .error(function(data){
+        window.location.reload('logged-out');
+      });
     },
     getUnreadMessageCount: function() {
       Conversation.unread($scope.me.id())
@@ -114,13 +124,9 @@ angular.module('MessagesCtrl', []).controller('MessagesController', function($sc
       if($routeParams.id){
         Conversation.start($scope.conversation)
         .success(function(data){
-          console.log("Before Start Conversation");
-          console.log($scope.activeConversation);
           $scope.activeConversation = data;
           $scope.click.getConversations();
           $scope.click.getMessages();
-          console.log("After Start Conversation");
-          console.log($scope.activeConversation);
         })
         .error(function(data){
 

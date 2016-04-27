@@ -107,6 +107,16 @@ module.exports = function(app, passport) {
 		});
   });
 
+	// security
+
+	app.get('/api/security/loggin-in', function(req, res) {
+		if (req.user) {
+			res.json(true);
+		} else {
+			res.json(false);	
+		}
+  });
+
 	// Conversation
 
 	app.post('/api/conversation', isAuthenticated, function(req, res){
