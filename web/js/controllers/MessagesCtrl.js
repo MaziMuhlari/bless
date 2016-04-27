@@ -53,8 +53,8 @@ angular.module('MessagesCtrl', []).controller('MessagesController', function($sc
 
   $scope.click = {
     init: function() {
-      $scope.click.startConversation();
       $scope.click.getConversations();
+      $scope.click.startConversation();
     },
     sendMessage: function() {
       nanobar.go(40);
@@ -62,6 +62,8 @@ angular.module('MessagesCtrl', []).controller('MessagesController', function($sc
         Message.send($scope.message, $scope.activeConversation, $scope.me.id())
         .success(function(data){
           $scope.messages.push(data);
+          $scope.message.message = "";
+          $scope.click.getConversations();
         })
         .error(function(data){
 
@@ -98,8 +100,13 @@ angular.module('MessagesCtrl', []).controller('MessagesController', function($sc
       if($routeParams.id){
         Conversation.start($scope.conversation)
         .success(function(data){
+          console.log("Before Start Conversation");
+          console.log($scope.activeConversation);
           $scope.activeConversation = data;
+          $scope.click.getConversations();
           $scope.click.getMessages();
+          console.log("After Start Conversation");
+          console.log($scope.activeConversation);
         })
         .error(function(data){
 

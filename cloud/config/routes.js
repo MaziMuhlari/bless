@@ -142,7 +142,20 @@ module.exports = function(app, passport) {
 					    if (err){
 				        res.send(err);
 							} else {
-								res.json(conversation);
+								Conversation.findOne({
+									$and: [
+										{ 'recepients': mongoose.Types.ObjectId(req.query.creator) },
+										{ 'recepients': mongoose.Types.ObjectId(req.query.recepient) }
+									]
+								})
+								.populate("recepients")
+								.exec(function(err, conversation){
+									if (err){
+						        res.send(err);
+									} else {
+										res.json(conversation);
+									}
+								});
 							}
 					});
 				}
