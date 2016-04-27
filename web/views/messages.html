@@ -3,7 +3,7 @@
     <div class="four columns">
       <div class="blesser-tile-list">
         <ul>
-          <li ng-repeat="conversation in conversations">
+          <li ng-repeat="conversation in conversations track by $index">
             <a ng-if="conversation.recepients[0]._id != me.id()" href="/messages/{{conversation.recepients[0]._id}}">
               {{conversation.recepients[0].name}} {{conversation.recepients[0].surname}} <b ng-if="conversation.read.indexOf(me.id())<0" class="notifications u-pull-right">{{conversation.read.count}}</b><br />
               <div><small class="gray">{{conversation.last_message_excerpt}}</small></div>
@@ -24,7 +24,7 @@
           <img src="/img/megaphone.png" width="35" title="Report User" alt="Report User" />
         </a>
       </h5>
-      <div class="blesser-tile-message emojinate" ng-repeat="message in messages">
+      <div class="blesser-tile-message emojinate" ng-repeat="message in messages track by $index">
         <div ng-if="message.composer == me.id()" class="me">{{message.message}}<small am-time-ago="message.created_on"></small></div>
         <div ng-if="message.composer != me.id()" class="you">{{message.message}}<small am-time-ago="message.created_on"></small></div>
       </div>

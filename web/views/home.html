@@ -1,6 +1,6 @@
 <div class="docs-section" id="intro">
   <div class="">
-    <div ng-repeat="blesser in blessers | filter: searchbar">
+    <div ng-repeat="blesser in blessers track by $index | filter: searchbar">
       <div class="row" ng-if="blesser._id != me.id()">
         <div class="twelve columns">
           <div class="blesser-tile emojinate">
