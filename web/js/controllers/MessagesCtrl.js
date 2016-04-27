@@ -1,6 +1,9 @@
 angular.module('MessagesCtrl', []).controller('MessagesController', function($scope, $routeParams, $cookies, $http, $window, $timeout, Message, Conversation) {
   $scope.title = "blesser.co | messages";
 
+  // search for the filer
+  $scope.search = "";
+
   // Count of the unread messages
   $scope.unreadMessages = 0;
 
@@ -79,6 +82,21 @@ angular.module('MessagesCtrl', []).controller('MessagesController', function($sc
 
       });
     },
+    emojifyMe: function(){
+      emojify.setConfig({
+        emojify_tag_type : 'div',           // Only run emojify.js on this element
+        only_crawl_id    : null,            // Use to restrict where emojify.js applies
+        img_dir          : '/img/emoji',  // Directory for emoji images
+        ignored_tags     : {                // Ignore the following tags
+            'SCRIPT'  : 1,
+            'TEXTAREA': 1,
+            'A'       : 1,
+            'PRE'     : 1,
+            'CODE'    : 1
+        }
+      });
+      emojify.run();
+    },
     sendMessage: function() {
       nanobar.go(40);
       if($scope.message.to && $scope.activeConversation){
@@ -113,6 +131,7 @@ angular.module('MessagesCtrl', []).controller('MessagesController', function($sc
       Conversation.list($scope.me.id())
       .success(function(data){
         $scope.conversations = data;
+        $timeout($scope.click.emojifyMe, 3000);
       })
       .error(function(data){
 

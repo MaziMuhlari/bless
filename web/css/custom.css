@@ -118,7 +118,7 @@ b.notifications{
   padding: 3px;
   font-size: 10px;}
 .blesser-tile-message {
-  max-height: 500px;
+  max-height: 600px;
   overflow-y: scroll;
   margin-bottom: 20px; }
 .blesser-tile-message .you {
