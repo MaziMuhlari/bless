@@ -121,7 +121,14 @@ module.exports = function(app, passport) {
 		    if (err){
 	        res.send(err);
 				} else if(conversation){
-					res.json(conversation);
+					conversation.read.push(req.query.creator);
+          conversation.save(function (err){
+              if(err){
+                  res.send(err);
+              }else{
+                  res.json(conversation);
+              }
+          });
 				}else{
 					var recepients = [];
 					recepients.push(req.query.creator);
@@ -186,6 +193,7 @@ module.exports = function(app, passport) {
 					}, {
 						$set : {
 							last_message_excerpt: req.query.message,
+							read: req.query.composer,
 					    last_message_sent: new Date()
 						}
 					}).exec();

@@ -1,4 +1,4 @@
-angular.module('MessagesCtrl', []).controller('MessagesController', function($scope, $routeParams, $cookies, $http, $window, Message, Conversation) {
+angular.module('MessagesCtrl', []).controller('MessagesController', function($scope, $routeParams, $cookies, $http, $window, $timeout, Message, Conversation) {
   $scope.title = "blesser.co | messages";
 
   // Information from cookies about the current user

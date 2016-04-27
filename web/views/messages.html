@@ -5,12 +5,12 @@
         <ul>
           <li ng-repeat="conversation in conversations">
             <a ng-if="conversation.recepients[0]._id != me.id()" href="/messages/{{conversation.recepients[0]._id}}">
-              {{conversation.recepients[0].name}} {{conversation.recepients[0].surname}} <b class="notifications u-pull-right">10</b><br />
+              {{conversation.recepients[0].name}} {{conversation.recepients[0].surname}} <b ng-if="conversation.read.indexOf(me.id())<0" class="notifications u-pull-right">{{conversation.read.count}}</b><br />
               <div><small class="gray">{{conversation.last_message_excerpt}}</small></div>
               <b class="u-pull-right gray">{{conversation.last_message_sent | amCalendar:referenceTime:formats }}</b>
             </a>
             <a ng-if="conversation.recepients[1]._id != me.id()" href="/messages/{{conversation.recepients[1]._id}}">
-              {{conversation.recepients[1].name}} {{conversation.recepients[1].surname}} <b class="notifications u-pull-right">10</b><br />
+              {{conversation.recepients[1].name}} {{conversation.recepients[1].surname}} <b ng-if="conversation.read.indexOf(me.id())<0" class="notifications u-pull-right">{{conversation.read.count}}</b><br />
               <div><small class="gray">{{conversation.last_message_excerpt}}</small></div>
               <b class="u-pull-right gray">{{conversation.last_message_sent | amCalendar:referenceTime:formats }}</b>
             </a>

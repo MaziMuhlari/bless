@@ -5,5 +5,6 @@ module.exports = mongoose.model('Conversation', new mongoose.Schema({
     last_message_excerpt: { type : String, default : "" },
     last_message_sent: { type : Date },
     recepients: [ { type :mongoose.Schema.Types.ObjectId, ref: 'User' } ],
+    read: [ { type :mongoose.Schema.Types.ObjectId, ref: 'User' } ],
     created_on: { type : Date, default: Date.now }
 }));
