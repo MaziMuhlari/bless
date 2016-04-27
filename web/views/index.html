@@ -74,7 +74,7 @@
             <div class="six columns">
               <ul class="navbar-list u-pull-right" ng-show="user.logged_in">
                 <li class="navbar-item">
-                  <a class="navbar-link" href="#" data-popover="#codeNavPopover">Hi, {{user.username}} <b class="notifications">100</b></a>
+                  <a class="navbar-link" href="#" data-popover="#codeNavPopover">Hi, {{user.username}} <b class="notifications">{{unreadMessages}}</b></a>
                   <div id="codeNavPopover" class="popover">
                     <ul class="popover-list">
                       <li class="popover-item">

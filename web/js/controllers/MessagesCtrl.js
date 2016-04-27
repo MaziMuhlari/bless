@@ -1,6 +1,9 @@
 angular.module('MessagesCtrl', []).controller('MessagesController', function($scope, $routeParams, $cookies, $http, $window, $timeout, Message, Conversation) {
   $scope.title = "blesser.co | messages";
 
+  // Count of the unread messages
+  $scope.unreadMessages = 0;
+
   // Information from cookies about the current user
   $scope.me = {
     id: function(){
@@ -55,6 +58,16 @@ angular.module('MessagesCtrl', []).controller('MessagesController', function($sc
     init: function() {
       $scope.click.getConversations();
       $scope.click.startConversation();
+      $scope.click.getUnreadMessageCount();
+    },
+    getUnreadMessageCount: function() {
+      Conversation.unread($scope.me.id())
+      .success(function(data){
+        $scope.unreadMessages = data;
+      })
+      .error(function(data){
+
+      });
     },
     sendMessage: function() {
       nanobar.go(40);
@@ -64,6 +77,7 @@ angular.module('MessagesCtrl', []).controller('MessagesController', function($sc
           $scope.messages.push(data);
           $scope.message.message = "";
           $scope.click.getConversations();
+          $scope.click.getUnreadMessageCount();
         })
         .error(function(data){
 

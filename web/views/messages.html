@@ -18,7 +18,7 @@
         </ul>
       </div>
     </div>
-    <div class="eight columns">
+    <div class="eight columns" ng-show="activeConversation._id">
       <h5>{{activeConversation.recepients[0].name}} and {{activeConversation.recepients[1].name}}
         <a href="/report" class="u-pull-right">
           <img src="/img/megaphone.png" width="35" title="Report User" alt="Report User" />
@@ -33,7 +33,10 @@
         <input name="from" type="hidden" ng-model="message.from"/>
         <input name="to" type="hidden" ng-model="message.to"/>
         <input class="u-pull-right" type="submit" value="Send">
-    </form>
+      </form>
+    </div>
+    <div class="eight columns" ng-show="!activeConversation._id">
+      <h5 class="empty-conversation">Select a conversation on the right</h5>
     </div>
   </div>
 </div>

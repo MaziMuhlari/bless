@@ -164,6 +164,9 @@ b.gray{
 .selected-conversation{
   background: #E0F7FA;
 }
+h5.empty-conversation{
+  text-align: center;
+  margin-top: 40px; }
 
 /* Larger than phone */
 @media (min-width: 550px) {

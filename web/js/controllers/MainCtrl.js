@@ -1,4 +1,4 @@
-angular.module('MainCtrl', []).controller('MainController', function($scope, $cookies, $routeParams, $http, $window, User) {
+angular.module('MainCtrl', []).controller('MainController', function($scope, $cookies, $routeParams, $http, $window, User, Conversation) {
 
   $scope.title = "blesser.co | home";
   $scope.user = {};
@@ -6,6 +6,9 @@ angular.module('MainCtrl', []).controller('MainController', function($scope, $co
   $scope.take = 10;
   $scope.skip = 0;
   $scope.searchbar = "";
+  
+  // Count of the unread messages
+  $scope.unreadMessages = 0;
 
   $scope.me = {
     id: function(){
@@ -46,7 +49,16 @@ angular.module('MainCtrl', []).controller('MainController', function($scope, $co
       .error(function(data){
 
       });
-    }
+    },
+    getUnreadMessageCount: function() {
+      Conversation.unread($scope.me.id())
+      .success(function(data){
+        $scope.unreadMessages = data;
+      })
+      .error(function(data){
+
+      });
+    },
   };
 
   $scope.click = {
@@ -70,6 +82,7 @@ angular.module('MainCtrl', []).controller('MainController', function($scope, $co
 
   $scope.init.user();
   $scope.click.more();
+  $scope.init.getUnreadMessageCount();
 
   $scope.logOut = function(){
     User.logout()

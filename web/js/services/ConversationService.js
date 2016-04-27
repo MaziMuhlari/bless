@@ -5,6 +5,9 @@ angular.module('ConversationService', []).factory('Conversation', ['$http', func
         },
         list : function(data) {
             return $http.get('/api/conversations?user_id=' + data);
+        },
+        unread : function(data) {
+            return $http.get('/api/conversations/unread?user_id=' + data);
         }
     }
 }]);

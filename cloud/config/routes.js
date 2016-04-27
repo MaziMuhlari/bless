@@ -177,6 +177,22 @@ module.exports = function(app, passport) {
 		});
   });
 
+	app.get('/api/conversations/unread', isAuthenticated, function(req, res){
+		res.header('Cache-Control', 'private, no-cache, no-store, must-revalidate');
+	  res.header('Expires', '-1');
+	  res.header('Pragma', 'no-cache');
+		Conversation.count({
+			 recepients: mongoose.Types.ObjectId(req.query.user_id),
+			 read: { '$ne': mongoose.Types.ObjectId(req.query.user_id) }
+		}, function(err, conversations){
+		    if (err){
+	        res.send(err);
+				} else {
+					res.json(conversations);
+				}
+		});
+  });
+
 	// Message
 
 	app.get('/api/messages', isAuthenticated, function(req, res){
