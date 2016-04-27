@@ -3,6 +3,7 @@ angular.module('BlesserApp',
 		'ngRoute',
 		'ngCookies',
 		'Routes',
+		'angularMoment',
 
     'AboutCtrl',
     'ContactCtrl',

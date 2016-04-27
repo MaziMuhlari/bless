@@ -25,8 +25,8 @@
         </a>
       </h5>
       <div class="blesser-tile-message emojinate" ng-repeat="message in messages">
-        <div ng-if="message.composer == me.id" class="me">{{message.message}}<small>21:52</small></div>
-        <div ng-if="message.composer != me.id" class="you">{{message.message}}<small>21:52</small></div>
+        <div ng-if="message.composer == me.id" class="me">{{message.message}}<small am-time-ago="message.created_on"></small></div>
+        <div ng-if="message.composer != me.id" class="you">{{message.message}}<small am-time-ago="message.created_on"></small></div>
       </div>
       <form ng-submit="click.sendMessage()" ng-controller="MessagesController">
         <input name="message" class="u-full-width" type="text" placeholder="Write a reply..." id="messageInput" ng-model="message.message"/>
