@@ -197,6 +197,18 @@ h5.empty-conversation{
     max-height: none; }
 }
 
+/* Larger than tablet */
+@media only screen and (max-width: 750px) {
+  .mobile-navbar{
+    display: block;
+  }
+}
+
+/* Larger than tablet */
+@media (min-width: 750px) {
+  .mobile-navbar{
+    display: none;
+  }
   /* Navbar */
   .navbar + .docs-section {
     border-top-width: 0; }
@@ -307,3 +319,4 @@ h5.empty-conversation{
   .popover-link:hover,
   .popover-item:first-child .popover-link:hover:after {
     border-bottom-color: #33C3F0; }
+  }

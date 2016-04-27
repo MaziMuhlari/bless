@@ -64,6 +64,18 @@
     </section>
 
     <div class="navbar-spacer"></div>
+    <nav class="mobile-navbar">
+      <select class="u-full-width" ng-show="user.logged_in" onchange="location = this.value;">
+        <option>Hi, {{user.username}} ({{unreadMessages}})</option>
+        <option value="/">Home</option>
+        <option value="/profile">Profile</option>
+        <option value="/messages">Messages</option>
+        <option value="/logged-out">Log Out</option>
+      </select>
+      <select class="u-full-width" ng-show="!user.logged_in" onchange="location = this.value;">
+        <option value="/login">Log In</option>
+      </select>
+    </nav>
     <nav class="navbar">
       <div class="container">
         <form>
@@ -90,6 +102,11 @@
               </ul>
             </div>
             <div class="six columns">
+              <ul class="navbar-list u-pull-right" ng-show="user.logged_in">
+                <li class="navbar-item">
+                  <a class="navbar-link" href="#">Hi, {{user.username}} <b class="notifications">{{unreadMessages}}</b></a>
+                </li>
+              </ul>
               <ul class="navbar-list u-pull-right" ng-show="!user.logged_in">
                 <li class="navbar-item">
                   <a class="navbar-link" href="/login">Click here to get blessed!</a>
