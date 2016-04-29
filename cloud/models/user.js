@@ -8,6 +8,7 @@ module.exports = mongoose.model('User', new mongoose.Schema({
     name: { type : String, default : "" },
     surname: { type : String, default : "" },
     description: { type : String, default : "" },
+    coupon: { type : String, default : "" },
     is_blesser: { type : Boolean, default : false },
     blessing: { type : Number, default : 0 },
     created_on: { type : Date, default: Date.now }
