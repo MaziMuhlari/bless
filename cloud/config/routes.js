@@ -265,21 +265,27 @@ module.exports = function(app, passport) {
 										if (err){
 											res.send(err);
 										} else {
+											var sender;
+											var recepient;
 											for (var i = 0; i < conversation.recepients.length; i++) {
-												var sender;
-												var recepient;
 												if(conversation.recepients[i]["_id"] == req.query.composer){
 													sender = conversation.recepients[i];
 												}else{
 													recepient = conversation.recepients[i];
 												}
 											}
-											email.conversation.message.sent(
-												req.query.conversation_id,
-												recepient["username"],
-												sender["name"],
-												sender["surname"],
-												req.query.message);
+											sendgrid.send({
+													to:       recepient.username,
+													from:     'blesserco@icloud.com',
+													subject:  'Message from ' + sender.name + " " + sender.surname,
+													html:     sender.name + " " + sender.surname + ': ' + req.query.message + ' <a href="http://blesser.co/messages/' + req.query.conversation_id + '">reply here</a>'
+											}, function(err, json) {
+													if (err) { 
+														return console.error(err); 
+													} else {
+														console.log(json);
+													}
+											});
 										}
 								});
 							}
