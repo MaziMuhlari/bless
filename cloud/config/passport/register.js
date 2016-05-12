@@ -1,6 +1,7 @@
 var LocalStrategy   = require('passport-local').Strategy;
 var User            = require('../../models/user');
 var bCrypt          = require('bcrypt-nodejs');
+var sendgrid       	= require('sendgrid')(process.env.SENDGRID_USERNAME || 'app49938343@heroku.com', process.env.SENDGRID_PASSWORD || 'iyqs5m7t6732');
 
 module.exports = function(passport){
 
@@ -38,6 +39,17 @@ module.exports = function(passport){
                                 throw err;
                             }
                             console.log('User Registration succesful');
+
+                            sendgrid.send({
+                                to:       username,
+                                from:     'blesserco@icloud.com',
+                                subject:  'Blesser Registration Succesful',
+                                text:     'Congratulations on your registration to blesser.co. ' + username + '. You can click the follwing link to start using the site https://www.blesser.co'
+                            }, function(err, json) {
+                                if (err) { return console.error(err); }
+                                console.log(json);
+                            });
+
                             return done(null, newUser);
                         });
                     }

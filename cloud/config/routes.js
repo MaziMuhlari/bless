@@ -1,7 +1,8 @@
-var mongoose = require('mongoose');
+var mongoose 				= require('mongoose');
 var User            = require('../models/user');
 var Message         = require('../models/message');
-var Conversation         = require('../models/conversation');
+var Conversation    = require('../models/conversation');
+var sendgrid       	= require('sendgrid')(process.env.SENDGRID_USERNAME || 'app49938343@heroku.com', process.env.SENDGRID_PASSWORD || 'iyqs5m7t6732');
 
 var isAuthenticated = function (req, res, next) {
 	// if user is authenticated in the session, call the next() to call the next request handler
@@ -220,9 +221,10 @@ module.exports = function(app, passport) {
 	// Message
 
 	app.get('/api/messages', isAuthenticated, function(req, res){
-		Message.find({
-			conversation: req.query.conversation_id
-		}, function(err, messages){
+		Message
+		.find({ conversation: req.query.conversation_id })
+		.sort({created_on: 'asc'})
+		.exec(function(err, messages){
 		    if (err){
 	        res.send(err);
 				} else {
@@ -251,10 +253,48 @@ module.exports = function(app, passport) {
 							read: arr,
 					    last_message_sent: new Date()
 						}
-					}).exec();
+					}).exec(function(err, conversation){
+						if (err){
+				        res.send(err);
+							} else {
+								Conversation.findOne({
+									_id: req.query.conversation_id
+								})
+								.populate("recepients")
+								.exec(function(err, conversation){
+										if (err){
+											res.send(err);
+										} else {
+											for (var i = 0; i < conversation.recepients.length; i++) {
+												var sender;
+												var recepient;
+												if(conversation.recepients[i]["_id"] == req.query.composer){
+													sender = conversation.recepients[i];
+												}else{
+													recepient = conversation.recepients[i];
+												}
+											}
+											
+											sendgrid.send({
+													to:       recepient["username"],
+													from:     'blesserco@icloud.com',
+													subject:  'Blesser: New Message',
+													text:     sender["name"] + " " + sender["surname"] + 'said: ' + req.query.message + ' <a href="http://blesser.co/messages/' + req.query.conversation_id + '">reply here</a>'
+											}, function(err, json) {
+													if (err) { 
+														return console.error(err); 
+													} else {
+														console.log(json);
+													}
+											});
+											
+										}
+								});
+							}
+					});
 
 					res.json(message);
-
+					
 				}
 		});
   });
