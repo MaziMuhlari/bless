@@ -5,12 +5,12 @@ angular.module('BlesserApp',
 		'Routes',
 		'angularMoment',
 
-    'AboutCtrl',
-    'ContactCtrl',
-    'CookiesCtrl',
-    'MainCtrl',
-    'MessagesCtrl',
-    'PrivacyCtrl',
+		'AboutCtrl',
+		'ContactCtrl',
+		'CookiesCtrl',
+		'MainCtrl',
+		'MessagesCtrl',
+		'PrivacyCtrl',
 		'TermsCtrl',
 		'ReportCtrl',
 		'ProfileCtrl',
@@ -22,6 +22,8 @@ angular.module('BlesserApp',
 		'ConversationService',
 		'MessageService',
 		'UserService',
-		'ReportService'
+		'ReportService',
+		
+		'FormatNumberWithSpacingFilter'
 
 		]);
