@@ -1,2 +1,2 @@
-# bless
-An application that aims to match the blesser and the blessed.
+# blesser
+A dating website for individuals that find it important to know how much money their partner earns.
