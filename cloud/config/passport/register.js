@@ -1,7 +1,7 @@
 var LocalStrategy   = require('passport-local').Strategy;
 var User            = require('../../models/user');
 var bCrypt          = require('bcrypt-nodejs');
-var sendgrid       	= require('sendgrid')(process.env.SENDGRID_USERNAME || 'app49938343@heroku.com', process.env.SENDGRID_PASSWORD || 'iyqs5m7t6732');
+var sendgrid       	= require('sendgrid')(process.env.SENDGRID_USERNAME, process.env.SENDGRID_PASSWORD);
 
 module.exports = function(passport){
 

@@ -2,7 +2,7 @@ var mongoose 				= require('mongoose');
 var User            = require('../models/user');
 var Message         = require('../models/message');
 var Conversation    = require('../models/conversation');
-var sendgrid       	= require('sendgrid')(process.env.SENDGRID_USERNAME || 'app49938343@heroku.com', process.env.SENDGRID_PASSWORD || 'iyqs5m7t6732');
+var sendgrid       	= require('sendgrid')(process.env.SENDGRID_USERNAME, process.env.SENDGRID_PASSWORD);
 
 var isAuthenticated = function (req, res, next) {
 	// if user is authenticated in the session, call the next() to call the next request handler
