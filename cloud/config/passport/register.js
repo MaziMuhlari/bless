@@ -44,7 +44,7 @@ module.exports = function(passport){
                                 to:       username,
                                 from:     'blesserco@icloud.com',
                                 subject:  'Blesser Registration Succesful',
-                                text:     'Congratulations on your registration to blesser.co. ' + username + '. You can click the follwing link to start using the site https://www.blesser.co'
+                                html:     'Congratulations on your registration to blesser.co. ' + username + '. You can click the follwing link to start using the site <a href="https://www.blesser.co">www.blesser.co</a>'
                             }, function(err, json) {
                                 if (err) { return console.error(err); }
                                 console.log(json);
