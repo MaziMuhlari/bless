@@ -11,5 +11,6 @@ module.exports = mongoose.model('User', new mongoose.Schema({
     coupon: { type : String, default : "" },
     is_blesser: { type : Boolean, default : false },
     blessing: { type : Number, default : 0 },
+    notifications: { type :mongoose.Schema.Types.ObjectId, ref: 'Notification' },
     created_on: { type : Date, default: Date.now }
 }));
